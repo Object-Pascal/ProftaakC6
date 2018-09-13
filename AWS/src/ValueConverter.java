@@ -22,7 +22,7 @@ public class ValueConverter {
     }
 
     public static double inchesHgToHectoPascal(short rawValue) {
-        return (double)rawValue * 0.029530d;
+        return (double)rawValue * 33.86388666666671 / 1000;
     }
 
     public static String humidity(short rawValue) {
@@ -35,21 +35,23 @@ public class ValueConverter {
 
     public static String sunRise(short rawValue) {
         String tijd = Integer.toString(rawValue);
+        String output = "";
         if (tijd.length() == 4) {
-            String output = tijd.charAt(0) + tijd.charAt(1) +  ":" + tijd.charAt(2) + tijd.charAt(3);
+            output = tijd.charAt(0) + tijd.charAt(1) +  ":" + tijd.charAt(2) + tijd.charAt(3);
         } else {
-            String output = "0" + tijd.charAt(0) +  ":" + tijd.charAt(1) + tijd.charAt(2);
+            output = "0" + tijd.charAt(0) +  ":" + tijd.charAt(1) + tijd.charAt(2);
         }
-        return tijd;
+        return output;
     }
 
     public static String sunSet(short rawValue) {
+        String output = "";
         String tijd = Integer.toString(rawValue);
         if (tijd.length() == 4) {
-            String output = tijd.charAt(0) + tijd.charAt(1) +  ":" + tijd.charAt(2) + tijd.charAt(3);
+            output = tijd.charAt(0) + tijd.charAt(1) +  ":" + tijd.charAt(2) + tijd.charAt(3);
         } else {
-            String output = "0" + tijd.charAt(0) +  ":" + tijd.charAt(1) + tijd.charAt(2);
+            output = "0" + tijd.charAt(0) +  ":" + tijd.charAt(1) + tijd.charAt(2);
         }
-        return tijd;
+        return output;
     }
 }
