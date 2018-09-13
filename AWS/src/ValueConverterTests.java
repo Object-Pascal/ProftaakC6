@@ -9,6 +9,7 @@ public class ValueConverterTests {
         testWindDirection();
         testUvIndex();
         testRainRate();
+        testWindChill();
     }
 
     public static void testTemperature() {
@@ -42,8 +43,8 @@ public class ValueConverterTests {
     }
 
     public static void testWindSpeed() {
-        short testValueA = 14;
-        double answerA = 3.7;
+        short testValueA = 2;
+        double answerA = 1.2;
         double returnedData = ValueConverter.windSpeed(testValueA);
 
         System.out.println("Windspeed = " + returnedData + " | Has to be: " + answerA);
@@ -87,5 +88,16 @@ public class ValueConverterTests {
         double calculated = ValueConverter.rainMeter(testValue);
 
         System.out.println("RainRate calculated = " + calculated + " | Should be: " + answer);
+    }
+
+    public static void testWindChill() {
+        short windSpeedRaw = 3;
+        short temperatureRaw = 50;
+        double testValue1 = ValueConverter.windSpeed(windSpeedRaw);
+        double testValue2 = ValueConverter.temperature(temperatureRaw);
+        double answer = -25;
+        double calculated = ValueConverter.windChill(testValue1, testValue2);
+
+        System.out.println("Windchill calculated = " + calculated + " | Should be: " + answer);
     }
 }
