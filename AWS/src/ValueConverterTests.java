@@ -93,8 +93,8 @@ public class ValueConverterTests {
     public static void testWindChill() {
         short windSpeedRaw = 3;
         short temperatureRaw = 50;
-        double testValue1 = ValueConverter.windSpeed(windSpeedRaw);
-        double testValue2 = ValueConverter.temperature(temperatureRaw);
+        double testValue2 = ValueConverter.windSpeed(windSpeedRaw);
+        double testValue1 = ValueConverter.temperature(temperatureRaw);
         double answer = -25;
         double calculated = ValueConverter.windChill(testValue1, testValue2);
 

@@ -55,9 +55,12 @@ public class ValueConverter {
         return output;
     }
 
-    public static double windChill(double windSpeed, double temperature) {
-        double output = 0.0817 * (3.71 * Math.pow(windSpeed, 0.5) + 5.81 - 0.25 * windSpeed) * (temperature - 91.4) + 91.4;
-        return output;
+    public static double windChill(double temperature, double windSpeed) {
+        double tempCelcius = temperature;
+        double V = windSpeed;
+        double windchill = 13.12 + ((0.6215 * tempCelcius) - (13.96 * Math.pow(V, 0.16))) + (0.4867 * (tempCelcius * Math.pow(V,0.16)));
+        windchill = Math.round(windchill * 10.0)/10.0;
+        return windchill;
     }
 
 
