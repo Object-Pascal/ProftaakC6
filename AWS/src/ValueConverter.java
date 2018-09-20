@@ -57,7 +57,7 @@ public class ValueConverter {
         return LocalTime.of(Integer.parseInt("" + output.charAt(0) + "" + output.charAt(1)), Integer.parseInt("" + output.charAt(3) + "" + output.charAt(4)));
     }
 
-    public static double windChill2(double temperature, double windSpeed) {
+    public static double windChill(double temperature, double windSpeed) {
         double tempCelcius = temperature;
         double V = windSpeed;
         double windchill = 13.12 + ((0.6215 * tempCelcius) - (13.96 * Math.pow(V, 0.16))) + (0.4867 * (tempCelcius * Math.pow(V,0.16)));
