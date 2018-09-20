@@ -30,7 +30,7 @@ public class ValueConverter {
     }
 
     public static double windSpeed(short rawValue) {
-        return rawValue * 1.609344d;
+        return rawValue / 1.609344;
     }
 
     public static String sunRise(short rawValue) {
@@ -54,4 +54,14 @@ public class ValueConverter {
         }
         return output;
     }
+
+    public static double windChill(double temperature, double windSpeed) {
+        double tempCelcius = temperature;
+        double V = windSpeed;
+        double windchill = 13.12 + ((0.6215 * tempCelcius) - (13.96 * Math.pow(V, 0.16))) + (0.4867 * (tempCelcius * Math.pow(V,0.16)));
+        windchill = Math.round(windchill * 10.0)/10.0;
+        return windchill;
+    }
+
+
 }
