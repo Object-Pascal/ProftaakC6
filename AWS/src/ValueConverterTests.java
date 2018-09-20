@@ -38,7 +38,7 @@ public class ValueConverterTests {
     public static void testHumidity() {
         short testValueA = 52;
         String answerA = "52%";
-        String returnedData = ValueConverter.humidity(testValueA);
+        short returnedData = ValueConverter.humidity(testValueA);
 
         System.out.println("The humidity = " + returnedData + " | Has to be: " + answerA);
     }
