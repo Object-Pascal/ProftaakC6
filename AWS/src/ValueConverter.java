@@ -25,8 +25,8 @@ public class ValueConverter {
         return (double)rawValue * 33.86388666666671 / 1000;
     }
 
-    public static String humidity(short rawValue) {
-        return rawValue + "%";
+    public static short humidity(short rawValue) {
+        return rawValue;
     }
 
     public static double windSpeed(short rawValue) {
@@ -61,5 +61,16 @@ public class ValueConverter {
         double windchill = 13.12 + ((0.6215 * tempCelcius) - (13.96 * Math.pow(V, 0.16))) + (0.4867 * (tempCelcius * Math.pow(V,0.16)));
         windchill = Math.round(windchill * 10.0)/10.0;
         return windchill;
+    }
+
+    /**
+     * Found on: https://stackoverflow.com/questions/22186778/using-math-round-to-round-to-one-decimal-place
+     * @param value the number to be rounded
+     * @param precision the precision
+     * @return rounded number
+     */
+    public static double roundNumber (double value, int precision) {
+        int scale = (int) Math.pow(10, precision);
+        return (double) Math.round(value * scale) / scale;
     }
 }
