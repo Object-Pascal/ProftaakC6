@@ -62,6 +62,4 @@ public class ValueConverter {
         windchill = Math.round(windchill * 10.0)/10.0;
         return windchill;
     }
-
-
 }
