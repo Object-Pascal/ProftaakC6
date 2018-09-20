@@ -20,7 +20,7 @@ public class Measurement {
     private short insideTemp;
     private short insideHum;
     private short outsideTemp;
-    private short windSpeed;
+    private short rawWindSpeed;
     private short avgWindSpeed;
     private short windDir;
     private short outsideHum;
@@ -30,8 +30,8 @@ public class Measurement {
     private short xmitBatt;
     private short battLevel;
     private short foreIcon;
-    private short sunrise;
-    private short sunset;
+    private short rawSunrise;
+    private short rawSunset;
 
     public String getStationId() { return stationId; }
     public void setStationId(String value) { this.stationId = value; }
@@ -51,8 +51,8 @@ public class Measurement {
     public short getOutsideTemp() {return outsideTemp;}
     public void setOutsideTemp(short value) { this.outsideTemp = value;}
 
-    public short getWindSpeed() {return windSpeed;}
-    public void setWindSpeed(short value) { this.windSpeed = value;}
+    public short getWindSpeed() {return rawWindSpeed;}
+    public void setWindSpeed(short value) { this.rawWindSpeed = value;}
 
     public short getAvgWindSpeed() {return avgWindSpeed;}
     public void setAvgWindSpeed(short value) { this.avgWindSpeed = value;}
@@ -81,11 +81,11 @@ public class Measurement {
     public short getForeIcon() {return foreIcon;}
     public void setForeIcon(short value) { this.foreIcon = value;}
 
-    public short getSunrise() {return sunrise;}
-    public void setSunrise(short value) { this.sunrise = value;}
+    public short getSunrise() {return rawSunrise;}
+    public void setSunrise(short value) { this.rawSunrise = value;}
 
-    public short getSunset() {return sunset;}
-    public void setSunset(short value) { this.sunset = value;}
+    public short getSunset() {return rawSunset;}
+    public void setSunset(short value) { this.rawSunset = value;}
 
     public Measurement(RawMeasurement data) {
         ParseRawMeasurement(data);
@@ -104,7 +104,4 @@ public class Measurement {
         this.windSpeed = ValueConverter.roundNumber(ValueConverter.windSpeed(data.getWindSpeed()), 1);
         this.sunrise = new Date();
     }
-
-    private String timeStamp;
-
 }
