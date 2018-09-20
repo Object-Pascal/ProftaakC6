@@ -1,4 +1,5 @@
-import java.time.LocalDateTime;
+
+import java.time.LocalTime;
 import java.util.Date;
 
 public class Measurement {
@@ -6,7 +7,7 @@ public class Measurement {
     private double airpressure;
     private short insideHumidity, outsideHumidity;
     private double windSpeed;
-    private Date sunrise, sunset;
+    private LocalTime sunrise, sunset;
 
     public Measurement() {
         //RawMeasurement rawMeasurement = DatabaseConnection.getMostRecentMeasurement();
@@ -28,7 +29,8 @@ public class Measurement {
         this.insideHumidity = ValueConverter.humidity(data.getInsideHum());
         this.outsideHumidity = ValueConverter.humidity(data.getOutsideTemp());
         this.windSpeed = ValueConverter.roundNumber(ValueConverter.windSpeed(data.getWindSpeed()), 1);
-        this.sunrise = new Date();
+        this.sunrise = ValueConverter.sunRise(data.getSunrise());
+        this.sunset = ValueConverter.sunSet(data.getSunset());
     }
 
     private String timeStamp;
