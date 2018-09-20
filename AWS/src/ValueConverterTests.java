@@ -97,7 +97,7 @@ public class ValueConverterTests {
         double testValue2 = ValueConverter.windSpeed(windSpeedRaw);
         double testValue1 = ValueConverter.temperature(temperatureRaw);
         double answer = -25;
-        double calculated = ValueConverter.windChill(testValue1, testValue2);
+        double calculated = ValueConverter.windChill2(testValue1, testValue2);
 
         System.out.println("Windchill calculated = " + calculated + " | Should be: " + answer);
     }
