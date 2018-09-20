@@ -10,6 +10,7 @@ public class ValueConverterTests {
         testUvIndex();
         testRainRate();
         testWindChill();
+        Measurement measurement = new Measurement();
     }
 
     public static void testTemperature() {
