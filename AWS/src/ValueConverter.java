@@ -48,7 +48,7 @@ public class ValueConverter {
         String output = "";
         String tijd = Integer.toString(rawValue);
         if (tijd.length() == 4) {
-            output = tijd.charAt(0) + tijd.charAt(1) +  ":" + tijd.charAt(2) + tijd.charAt(3);
+            output = "" + tijd.charAt(0) + tijd.charAt(1) +  ":" + tijd.charAt(2) + tijd.charAt(3);
         } else {
             output = "0" + tijd.charAt(0) +  ":" + tijd.charAt(1) + tijd.charAt(2);
         }
