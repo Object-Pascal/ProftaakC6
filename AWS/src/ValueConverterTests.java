@@ -12,7 +12,11 @@ public class ValueConverterTests {
         testUvIndex();
         testRainRate();
         testWindChill();
-        Measurement measurement = new Measurement();
+
+        RawMeasurement rawMeasurement = DatabaseConnection.getMostRecentMeasurement();
+        Measurement measurement = new Measurement(rawMeasurement);
+
+        System.out.println(measurement);
     }
 
     public static void testTemperature() {
