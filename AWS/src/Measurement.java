@@ -228,7 +228,4 @@ public class Measurement {
                 + "\nsunset = \t" + sunset;
         return s;
     }
-
 }
-
-
