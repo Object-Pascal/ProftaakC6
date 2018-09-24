@@ -1,3 +1,5 @@
+import java.time.LocalTime;
+
 public class ValueConverterTests {
     public static void main(String[] args) {
         testTemperature();
@@ -10,6 +12,7 @@ public class ValueConverterTests {
         testUvIndex();
         testRainRate();
         testWindChill();
+        Measurement measurement = new Measurement();
     }
 
     public static void testTemperature() {
@@ -37,7 +40,7 @@ public class ValueConverterTests {
     public static void testHumidity() {
         short testValueA = 52;
         String answerA = "52%";
-        String returnedData = ValueConverter.humidity(testValueA);
+        short returnedData = ValueConverter.humidity(testValueA);
 
         System.out.println("The humidity = " + returnedData + " | Has to be: " + answerA);
     }
@@ -53,7 +56,7 @@ public class ValueConverterTests {
     public static void testSunRise() {
         short testValueA = 714;
         String answerA = "07:14";
-        String returnedData = ValueConverter.sunRise(testValueA);
+        LocalTime returnedData = ValueConverter.sunRise(testValueA);
 
         System.out.println("Time of sunrise = " + returnedData + " | Has to be: " + answerA);
     }
@@ -61,7 +64,7 @@ public class ValueConverterTests {
     public static void testSunSet() {
         short testValueA = 2001;
         String answerA = "20:01";
-        String returnedData = ValueConverter.sunSet(testValueA);
+        LocalTime returnedData = ValueConverter.sunSet(testValueA);
 
         System.out.println("Time of sunset = " + returnedData + " | Has to be: " + answerA);
     }
