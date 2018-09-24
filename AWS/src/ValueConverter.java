@@ -1,3 +1,5 @@
+import java.time.LocalTime;
+
 public class ValueConverter {
     /*
     This function converts the measured temp in fahrenheit to celsius
@@ -33,7 +35,7 @@ public class ValueConverter {
         return rawValue / 1.609344;
     }
 
-    public static String sunRise(short rawValue) {
+    public static LocalTime sunRise(short rawValue) {
         String tijd = Integer.toString(rawValue);
         String output = "";
         if (tijd.length() == 4) {
@@ -41,10 +43,10 @@ public class ValueConverter {
         } else {
             output = "0" + tijd.charAt(0) +  ":" + tijd.charAt(1) + tijd.charAt(2);
         }
-        return output;
+        return LocalTime.of(Integer.parseInt("" + output.charAt(0) + "" + output.charAt(1)), Integer.parseInt("" + output.charAt(3) + "" + output.charAt(4)));
     }
 
-    public static String sunSet(short rawValue) {
+    public static LocalTime sunSet(short rawValue) {
         String output = "";
         String tijd = Integer.toString(rawValue);
         if (tijd.length() == 4) {
@@ -52,7 +54,7 @@ public class ValueConverter {
         } else {
             output = "0" + tijd.charAt(0) +  ":" + tijd.charAt(1) + tijd.charAt(2);
         }
-        return output;
+        return LocalTime.of(Integer.parseInt("" + output.charAt(0) + "" + output.charAt(1)), Integer.parseInt("" + output.charAt(3) + "" + output.charAt(4)));
     }
 
     public static double windChill(double temperature, double windSpeed) {
