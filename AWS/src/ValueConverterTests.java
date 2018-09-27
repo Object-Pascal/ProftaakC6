@@ -12,6 +12,7 @@ public class ValueConverterTests {
         testUvIndex();
         testRainRate();
         testWindChill();
+<<<<<<< HEAD
         Measurement measurement = new Measurement(DatabaseConnection.getMostRecentMeasurement());
         System.out.println(measurement.getStationId());
         System.out.println(measurement.getdateStamp());
@@ -32,6 +33,13 @@ public class ValueConverterTests {
         System.out.println(measurement.getSunrise());
         System.out.println(measurement.getSunset());
 
+=======
+
+        RawMeasurement rawMeasurement = DatabaseConnection.getMostRecentMeasurement();
+        Measurement measurement = new Measurement(rawMeasurement);
+
+        System.out.println(measurement);
+>>>>>>> 4a0e6e921fa6b4c6ca411ce0a3f121cf1727a573
     }
 
     public static void testTemperature() {

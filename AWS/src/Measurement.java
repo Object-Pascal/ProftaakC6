@@ -30,18 +30,15 @@ public class Measurement {
     }
 
     private void ParseRawMeasurement(RawMeasurement data) {
-        this.insideTemperature = ValueConverter.roundNumber(
-                ValueConverter.temperature(data.getInsideTemp()), 1);
-
-        this.outsideTemperature = ValueConverter.roundNumber(
-                ValueConverter.temperature(data.getOutsideTemp()), 1);
+        this.insideTemperature = ValueConverter.temperature(data.getInsideTemp());
+        this.outsideTemperature = ValueConverter.temperature(data.getOutsideTemp());
 
         this.airpressure = ValueConverter.inchesHgToHectoPascal(data.getBarometer());
         this.insideHumidity = ValueConverter.humidity(data.getInsideHum());
         this.outsideHumidity = ValueConverter.humidity(data.getOutsideTemp());
 
-        this.windSpeed = ValueConverter.roundNumber(ValueConverter.windSpeed(data.getWindSpeed()), 1);
-        this.averageWindSpeed = ValueConverter.roundNumber(ValueConverter.windSpeed(data.getAvgWindSpeed()), 1);
+        this.windSpeed = ValueConverter.windSpeed(data.getWindSpeed());
+        this.averageWindSpeed = ValueConverter.windSpeed(data.getAvgWindSpeed());
 
         this.sunrise = ValueConverter.sunRise(data.getSunrise());
         this.sunset = ValueConverter.sunSet(data.getSunset());
@@ -78,65 +75,160 @@ public class Measurement {
                 + "\nxmitBatt = \t" + xmitBatt
                 + "\nbattLevel = \t" + battLevel
                 + "\nforeIcon = \t" + foreIcon
-                + "\nsunrise = \th  , " + sunrise
+                + "\nsunrise = \t" + sunrise
                 + "\nsunset = \t" + sunset;
         return s;
     }
 
-    public String getStationId() {return stationId;}
-    public void setStationId(String value) {this.stationId = value;}
+    public String getStationId() {
+        return stationId;
+    }
 
-    public LocalDateTime getdateStamp() {return dateStamp;}
-    public void setdateStamp(LocalDateTime value) {this.dateStamp = value;}
+    public void setStationId(String stationId) {
+        this.stationId = stationId;
+    }
 
-    public double getBarometer() {return airpressure;}
-    public void setBarometer(double value) {this.airpressure = value;}
+    public LocalDateTime getDateStamp() {
+        return dateStamp;
+    }
 
-    public double getInsideTemp() {return insideTemperature;}
-    public void setInsideTemp(double value) {this.insideTemperature = value;}
+    public void setDateStamp(LocalDateTime dateStamp) {
+        this.dateStamp = dateStamp;
+    }
 
-    public short getInsideHum() {return insideHumidity;}
-    public void setInsideHum(short value) {this.insideHumidity = value;}
+    public double getInsideTemperature() {
+        return insideTemperature;
+    }
 
-    public double getOutsideTemp() {return outsideTemperature;}
-    public void setOutsideTemp(double value) {this.outsideTemperature = value;}
+    public void setInsideTemperature(double insideTemperature) {
+        this.insideTemperature = insideTemperature;
+    }
 
-    public double getWindSpeed() {return windSpeed;}
-    public void setWindSpeed(double value) { this.windSpeed = value;}
+    public double getOutsideTemperature() {
+        return outsideTemperature;
+    }
 
-    public double getAvgWindSpeed() {return averageWindSpeed;}
-    public void setAvgWindSpeed(double value) {this.averageWindSpeed = value;}
+    public void setOutsideTemperature(double outsideTemperature) {
+        this.outsideTemperature = outsideTemperature;
+    }
 
-    public double getWindChill() {return windChill;}
-    public void setWindChill(double value) {this.windChill = value;}
+    public double getAirpressure() {
+        return airpressure;
+    }
 
-    public String getWindDir() {return windDirection; }
-    public void setWindDir(String value) {this.windDirection = value;}
+    public void setAirpressure(double airpressure) {
+        this.airpressure = airpressure;
+    }
 
-    public short getOutsideHum() {return outsideHumidity;}
-    public void setOutsideHum(short value) {this.outsideHumidity = value;}
+    public short getInsideHumidity() {
+        return insideHumidity;
+    }
 
-    public double getRainRate() {return rainRate;}
-    public void setRainRate(double value) {this.rainRate = value;}
+    public void setInsideHumidity(short insideHumidity) {
+        this.insideHumidity = insideHumidity;
+    }
 
-    public double getUVLevel() {return uvIndex;}
-    public void setUVLevel(double value) {this.uvIndex = value;}
+    public short getOutsideHumidity() {
+        return outsideHumidity;
+    }
 
-    public double getSolarRad() {return solarRadiaton;}
-    public void setSolarRad(double value) {this.solarRadiaton = value;}
+    public void setOutsideHumidity(short outsideHumidity) {
+        this.outsideHumidity = outsideHumidity;
+    }
 
-    public short getXmitBatt() {return xmitBatt;}
-    public void setXmitBatt(short value) {this.xmitBatt = value;}
+    public double getWindSpeed() {
+        return windSpeed;
+    }
 
-    public short getBattLevel() {return battLevel;}
-    public void setBattLevel(short value) {this.battLevel = value;}
+    public void setWindSpeed(double windSpeed) {
+        this.windSpeed = windSpeed;
+    }
 
-    public short getForeIcon() {return foreIcon;}
-    public void setForeIcon(short value) {this.foreIcon = value;}
+    public double getAverageWindSpeed() {
+        return averageWindSpeed;
+    }
 
-    public LocalTime getSunrise() {return sunrise;}
-    public void setSunrise(LocalTime value) { this.sunrise = value;}
+    public void setAverageWindSpeed(double averageWindSpeed) {
+        this.averageWindSpeed = averageWindSpeed;
+    }
 
-    public LocalTime getSunset() {return sunset;}
-    public void setSunset(LocalTime value) { this.sunset = value;}
+    public LocalTime getSunrise() {
+        return sunrise;
+    }
+
+    public void setSunrise(LocalTime sunrise) {
+        this.sunrise = sunrise;
+    }
+
+    public LocalTime getSunset() {
+        return sunset;
+    }
+
+    public void setSunset(LocalTime sunset) {
+        this.sunset = sunset;
+    }
+
+    public String getWindDirection() {
+        return windDirection;
+    }
+
+    public void setWindDirection(String windDirection) {
+        this.windDirection = windDirection;
+    }
+
+    public double getWindChill() {
+        return windChill;
+    }
+
+    public void setWindChill(double windChill) {
+        this.windChill = windChill;
+    }
+
+    public double getRainRate() {
+        return rainRate;
+    }
+
+    public void setRainRate(double rainRate) {
+        this.rainRate = rainRate;
+    }
+
+    public double getUvIndex() {
+        return uvIndex;
+    }
+
+    public void setUvIndex(double uvIndex) {
+        this.uvIndex = uvIndex;
+    }
+
+    public double getSolarRadiaton() {
+        return solarRadiaton;
+    }
+
+    public void setSolarRadiaton(double solarRadiaton) {
+        this.solarRadiaton = solarRadiaton;
+    }
+
+    public short getXmitBatt() {
+        return xmitBatt;
+    }
+
+    public void setXmitBatt(short xmitBatt) {
+        this.xmitBatt = xmitBatt;
+    }
+
+    public short getBattLevel() {
+        return battLevel;
+    }
+
+    public void setBattLevel(short battLevel) {
+        this.battLevel = battLevel;
+    }
+
+    public short getForeIcon() {
+        return foreIcon;
+    }
+
+    public void setForeIcon(short foreIcon) {
+        this.foreIcon = foreIcon;
+    }
 }
