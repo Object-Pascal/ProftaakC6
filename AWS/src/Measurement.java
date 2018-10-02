@@ -1,3 +1,4 @@
+import com.sun.javafx.binding.StringFormatter;
 import sun.awt.SunHints;
 
 import java.time.LocalDateTime;
@@ -61,7 +62,7 @@ public class Measurement {
         String s = "RawMeasurement:"
                 + "\nstationId = \t" + stationId
                 + "\ndateStamp = \t" + dateStamp
-                + "\nbarometer = \t" + airpressure
+                + "\nbarometer = \t" + String.format("%.2f",airpressure)
                 + "\ninsideTemp = \t" + insideTemperature
                 + "\ninsideHum = \t" + insideHumidity
                 + "\noutsideTemp = \t" + outsideTemperature

@@ -1,7 +1,14 @@
 import java.time.LocalTime;
+import java.util.ArrayList;
+
 
 public class ValueConverterTests {
+
+
+    private int countermain;
+
     public static void main(String[] args) {
+        /*
         testTemperature();
         testInchesHgToHectoPascal();
         testHumidity();
@@ -12,34 +19,76 @@ public class ValueConverterTests {
         testUvIndex();
         testRainRate();
         testWindChill();
-<<<<<<< HEAD
+
+        System.out.println("------------------------------------------------------------------");
         Measurement measurement = new Measurement(DatabaseConnection.getMostRecentMeasurement());
-        System.out.println(measurement.getStationId());
-        System.out.println(measurement.getdateStamp());
-        System.out.println(measurement.getBarometer());
-        System.out.println(measurement.getInsideTemp());
-        System.out.println(measurement.getInsideHum());
-        System.out.println(measurement.getOutsideTemp());
-        System.out.println(measurement.getWindSpeed());
-        System.out.println(measurement.getWindChill());
-        System.out.println(measurement.getWindDir());
-        System.out.println(measurement.getOutsideHum());
-        System.out.println(measurement.getRainRate());
-        System.out.println(measurement.getUVLevel());
-        System.out.println(measurement.getSolarRad());
-        System.out.println(measurement.getXmitBatt());
-        System.out.println(measurement.getBattLevel());
-        System.out.println(measurement.getForeIcon());
-        System.out.println(measurement.getSunrise());
-        System.out.println(measurement.getSunset());
+        ArrayList<Measurement> lastvalues = new ArrayList<>();
+        lastvalues.add(measurement);
+        System.out.println("latest values: " + "\n" + lastvalues);
+        */
 
-=======
 
-        RawMeasurement rawMeasurement = DatabaseConnection.getMostRecentMeasurement();
-        Measurement measurement = new Measurement(rawMeasurement);
+        IO.init();
+        clear();
+        int counterstart = 0;
+        while (true) {
+            if (IO.readShort(0x80) != 0 && (IO.readShort(0x90) == 0)) {
+                startCounter(counterstart);
+            }
+            if (IO.readShort(0x90) != 0 && (IO.readShort(0x80) == 0)) {
+                startnegativeCounter(999);
+            }
+        }
+    }
 
-        System.out.println(measurement);
->>>>>>> 4a0e6e921fa6b4c6ca411ce0a3f121cf1727a573
+
+    public static int startCounter(int counterstart) {
+        for (int counter = counterstart ;counter < 100000; counter++) {
+            if(IO.readShort(0x80) == 0){
+                return counter;
+            }
+
+            IO.writeShort(0x10, counter % 10);
+            int counter2 = counter / 10;
+            IO.writeShort(0x12, counter2 % 10);
+            int counter3 = counter2 / 10;
+            IO.writeShort(0x14, counter3% 10);
+            int counter4 = counter3/ 10;
+            IO.writeShort(0x16, counter4% 10);
+            int counter5 = counter4/ 10;
+            IO.writeShort(0x18, counter5% 10);
+
+            IO.delay(100);
+
+        }
+        return counterstart;
+    }
+
+    public static int startnegativeCounter(int counterstart) {
+        for (int counter = counterstart; counter > 0; counter--) {
+            if(IO.readShort(0x90) == 0){
+                return counter;
+            }
+
+            IO.writeShort(0x10, counter % 10);
+            int number = counter / 10;
+            IO.writeShort(0x12, number % 10);
+            int number2 = number / 10;
+            IO.writeShort(0x14, number2 % 10);
+            int number3 = number2 / 10;
+            IO.writeShort(0x16, number3 % 10);
+            int number4 = number3 / 10;
+            IO.writeShort(0x18, number4 % 10);
+
+            IO.delay(100);
+        }
+        return counterstart;
+    }
+
+    public static void clear(){
+       for(int i = 0x10; i < 0x35; i+= 0x02){
+           IO.writeShort(i,0x100 | 1 << 8);
+       }
     }
 
     public static void testTemperature() {
