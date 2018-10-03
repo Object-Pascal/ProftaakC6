@@ -12,11 +12,34 @@ public class ValueConverterTests {
         testUvIndex();
         testRainRate();
         testWindChill();
+<<<<<<< HEAD
+        Measurement measurement = new Measurement(DatabaseConnection.getMostRecentMeasurement());
+        System.out.println(measurement.getStationId());
+        System.out.println(measurement.getdateStamp());
+        System.out.println(measurement.getBarometer());
+        System.out.println(measurement.getInsideTemp());
+        System.out.println(measurement.getInsideHum());
+        System.out.println(measurement.getOutsideTemp());
+        System.out.println(measurement.getWindSpeed());
+        System.out.println(measurement.getWindChill());
+        System.out.println(measurement.getWindDir());
+        System.out.println(measurement.getOutsideHum());
+        System.out.println(measurement.getRainRate());
+        System.out.println(measurement.getUVLevel());
+        System.out.println(measurement.getSolarRad());
+        System.out.println(measurement.getXmitBatt());
+        System.out.println(measurement.getBattLevel());
+        System.out.println(measurement.getForeIcon());
+        System.out.println(measurement.getSunrise());
+        System.out.println(measurement.getSunset());
+
+=======
 
         RawMeasurement rawMeasurement = DatabaseConnection.getMostRecentMeasurement();
         Measurement measurement = new Measurement(rawMeasurement);
 
         System.out.println(measurement);
+>>>>>>> 4a0e6e921fa6b4c6ca411ce0a3f121cf1727a573
     }
 
     public static void testTemperature() {
