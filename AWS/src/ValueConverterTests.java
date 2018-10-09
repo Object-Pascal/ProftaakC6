@@ -12,44 +12,43 @@ public class ValueConverterTests {
         testUvIndex();
         testRainRate();
         testWindChill();
-<<<<<<< HEAD
+
         Measurement measurement = new Measurement(DatabaseConnection.getMostRecentMeasurement());
         System.out.println(measurement.getStationId());
-        System.out.println(measurement.getdateStamp());
-        System.out.println(measurement.getBarometer());
-        System.out.println(measurement.getInsideTemp());
-        System.out.println(measurement.getInsideHum());
-        System.out.println(measurement.getOutsideTemp());
+        System.out.println(measurement.getDateStamp());
+        System.out.println(measurement.getInsideTemperature());
+        System.out.println(measurement.getInsideHumidity());
+        System.out.println(measurement.getOutsideTemperature());
         System.out.println(measurement.getWindSpeed());
         System.out.println(measurement.getWindChill());
-        System.out.println(measurement.getWindDir());
-        System.out.println(measurement.getOutsideHum());
+        System.out.println(measurement.getWindDirection());
+        System.out.println(measurement.getOutsideHumidity());
         System.out.println(measurement.getRainRate());
-        System.out.println(measurement.getUVLevel());
-        System.out.println(measurement.getSolarRad());
+        System.out.println(measurement.getUvIndex());
+        System.out.println(measurement.getSolarRadiaton());
         System.out.println(measurement.getXmitBatt());
         System.out.println(measurement.getBattLevel());
         System.out.println(measurement.getForeIcon());
         System.out.println(measurement.getSunrise());
         System.out.println(measurement.getSunset());
 
-=======
+
 
         RawMeasurement rawMeasurement = DatabaseConnection.getMostRecentMeasurement();
-        Measurement measurement = new Measurement(rawMeasurement);
+
 
         System.out.println(measurement);
->>>>>>> 4a0e6e921fa6b4c6ca411ce0a3f121cf1727a573
+
     }
 
     public static void testTemperature() {
-        short testValueA = 810;
+        short testValueA = 754;
         double answerA = 27.2;
         double returnedData = ValueConverter.temperature(testValueA);
 
         System.out.println("Temperature inside = " + returnedData + " | Has to be: " + answerA);
 
-        short testValueB = 673;
+        short testValueB = 679;
         double answerB = 19.6;
         returnedData = ValueConverter.temperature(testValueB);
 
@@ -57,7 +56,7 @@ public class ValueConverterTests {
     }
 
     public static void testInchesHgToHectoPascal() {
-        short testValueA = 30233;
+        short testValueA = 29975;
         double answerA = 1023;
         double returnedData = ValueConverter.inchesHgToHectoPascal(testValueA);
 
@@ -65,7 +64,7 @@ public class ValueConverterTests {
     }
 
     public static void testHumidity() {
-        short testValueA = 52;
+        short testValueA = 32;
         String answerA = "52%";
         short returnedData = ValueConverter.humidity(testValueA);
 
@@ -73,7 +72,7 @@ public class ValueConverterTests {
     }
 
     public static void testWindSpeed() {
-        short testValueA = 2;
+        short testValueA = 6;
         double answerA = 1.2;
         double returnedData = ValueConverter.windSpeed(testValueA);
 
@@ -89,7 +88,7 @@ public class ValueConverterTests {
     }
 
     public static void testSunSet() {
-        short testValueA = 2001;
+        short testValueA = 2202;
         String answerA = "20:01";
         LocalTime returnedData = ValueConverter.sunSet(testValueA);
 
@@ -97,7 +96,7 @@ public class ValueConverterTests {
     }
 
     public static void testWindDirection() {
-        short testValue = 277;
+        short testValue = 293;
         String answer = "277°";
         String directionAnswer = ValueConverter.windDirection(testValue);
 
@@ -105,7 +104,7 @@ public class ValueConverterTests {
     }
 
     public static void testUvIndex() {
-        short testValue = 38;
+        short testValue = 8;
         double answer = 3.8;
         double calculated = ValueConverter.uvIndex(testValue);
 
@@ -113,7 +112,7 @@ public class ValueConverterTests {
     }
 
     public static void testRainRate() {
-        short testValue = 185;
+        short testValue = 0;
         double answer = 46.99;
         double calculated = ValueConverter.rainMeter(testValue);
 
@@ -121,8 +120,8 @@ public class ValueConverterTests {
     }
 
     public static void testWindChill() {
-        short windSpeedRaw = 3;
-        short temperatureRaw = 50;
+        short windSpeedRaw = 6;
+        short temperatureRaw = 679;
         double testValue2 = ValueConverter.windSpeed(windSpeedRaw);
         double testValue1 = ValueConverter.temperature(temperatureRaw);
         double answer = -19.7;
