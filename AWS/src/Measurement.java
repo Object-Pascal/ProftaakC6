@@ -231,4 +231,45 @@ public class Measurement {
     public void setForeIcon(short foreIcon) {
         this.foreIcon = foreIcon;
     }
+
+    public boolean isValid(){
+        if (outsideTemperature > 60 || outsideTemperature < -60){
+            return false;
+        }
+        if (insideTemperature > 40 || insideTemperature < -10){
+            return false;
+        }
+        if (airpressure == 0 ){
+            return false;
+        }
+        if (insideHumidity < 0 || insideHumidity >100){
+            return false;
+        }
+        if (outsideHumidity < 0 || outsideHumidity > 100){
+            return false;
+        }
+        if (windSpeed > 254 || windSpeed < 0){
+            return false;
+        }
+        if (windDirection.equals("32767")){
+            return false;
+        }
+        if (rainRate == 32767){
+            return false;
+        }
+        if (uvIndex > 24){
+            return  false;
+        }
+        if (solarRadiaton == 32767){
+            return false;
+        }
+        if (xmitBatt == 0){
+            return false;
+        }
+        if (battLevel == 0){
+            return false;
+
+        }
+        return true;
+    }
 }
