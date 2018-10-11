@@ -28,68 +28,7 @@ public class ValueConverterTests {
         */
 
 
-        IO.init();
-        clear();
-        int counterstart = 0;
-        while (true) {
-            if (IO.readShort(0x80) != 0 && (IO.readShort(0x90) == 0)) {
-                startCounter(counterstart);
-            }
-            if (IO.readShort(0x90) != 0 && (IO.readShort(0x80) == 0)) {
-                startnegativeCounter(999);
-            }
-        }
-    }
 
-
-    public static int startCounter(int counterstart) {
-        for (int counter = counterstart ;counter < 100000; counter++) {
-            if(IO.readShort(0x80) == 0){
-                return counter;
-            }
-
-            IO.writeShort(0x10, counter % 10);
-            int counter2 = counter / 10;
-            IO.writeShort(0x12, counter2 % 10);
-            int counter3 = counter2 / 10;
-            IO.writeShort(0x14, counter3% 10);
-            int counter4 = counter3/ 10;
-            IO.writeShort(0x16, counter4% 10);
-            int counter5 = counter4/ 10;
-            IO.writeShort(0x18, counter5% 10);
-
-            IO.delay(100);
-
-        }
-        return counterstart;
-    }
-
-    public static int startnegativeCounter(int counterstart) {
-        for (int counter = counterstart; counter > 0; counter--) {
-            if(IO.readShort(0x90) == 0){
-                return counter;
-            }
-
-            IO.writeShort(0x10, counter % 10);
-            int number = counter / 10;
-            IO.writeShort(0x12, number % 10);
-            int number2 = number / 10;
-            IO.writeShort(0x14, number2 % 10);
-            int number3 = number2 / 10;
-            IO.writeShort(0x16, number3 % 10);
-            int number4 = number3 / 10;
-            IO.writeShort(0x18, number4 % 10);
-
-            IO.delay(100);
-        }
-        return counterstart;
-    }
-
-    public static void clear(){
-       for(int i = 0x10; i < 0x35; i+= 0x02){
-           IO.writeShort(i,0x100 | 1 << 8);
-       }
-    }
 
     public static void testTemperature() {
         short testValueA = 810;
