@@ -116,6 +116,7 @@ public class Period {
 	 * Todo
 	 */
 	public ArrayList<Period> hasHeatWave() {
+		ArrayList<Measurement> measurements = getMeasurements();
 		return null;
 	}
 
@@ -130,6 +131,18 @@ public class Period {
 	 * Todo more methods
 	 */
 
+	public Period getLongestConnectedSummerDays() {
+		ArrayList<ArrayList<Measurement>> periodicMeasurements = getMeasurementsPerDay();
+		for (ArrayList<Measurement> dailyCollection : periodicMeasurements) {
+			double dailyAverageTemperature = 0.0;
+			for (Measurement m : dailyCollection) {
+				dailyAverageTemperature += m.getOutsideTemperature();
+			}
+			dailyAverageTemperature /= (double)dailyCollection.size();
+			System.out.println(dailyAverageTemperature);
+		}
+		return null;
+	}
 
 	public ArrayList<Double> getInsideTemperatures(){
 		ArrayList<Measurement> measurements = getMeasurements();
@@ -138,6 +151,32 @@ public class Period {
 			getallen.add(x.getInsideTemperature());
 		}
 		return getallen;
+	}
+
+	public ArrayList<ArrayList<Measurement>> getMeasurementsPerDay() {
+		ArrayList<Measurement> allMeasurements = getMeasurements();
+		ArrayList<ArrayList<Measurement>> finalCollection = new ArrayList<>();
+		ArrayList<Measurement> dailyMeasurements = new ArrayList<>();
+		Measurement lastMeasurement = allMeasurements.get(0);
+		for (Measurement m: allMeasurements) {
+			if (lastMeasurement.isSameDay(m))
+				dailyMeasurements.add(m);
+			else {
+				ArrayList<Measurement> clonedCollection = new ArrayList<>(dailyMeasurements.size());
+				for (Measurement toAddMeasurement : dailyMeasurements) {
+					try {
+						clonedCollection.add(toAddMeasurement.clone());
+					} catch (Exception e) {
+
+					}
+				}
+				finalCollection.add(clonedCollection);
+				lastMeasurement = m;
+				dailyMeasurements.clear();
+				dailyMeasurements.add(m);
+			}
+		}
+		return finalCollection;
 	}
 
 	public double getMaxInsideTemp(){
@@ -168,7 +207,7 @@ public class Period {
 		ArrayList<Measurement> measurements = getMeasurements();
 		ArrayList<Double> getallen = new ArrayList<Double>();
 		for (Measurement x : measurements){
-			getallen.add(x.getOutsideTemperature()));
+			getallen.add(x.getOutsideTemperature());
 		}
 		return getallen;
 	}
@@ -294,18 +333,14 @@ public class Period {
 	}
 
 	public double median(ArrayList<Double> numbers){
-
+		return 0.0;
 	}
 
 	public double modus(ArrayList<Double> numbers){
-
+		return 0.0;
 	}
 
 	public double standaardafwijking(ArrayList<Double> numbers){
-
+		return 0.0;
 	}
-
-
-
-
 }
