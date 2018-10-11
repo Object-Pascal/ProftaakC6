@@ -1,9 +1,8 @@
-import sun.awt.SunHints;
-
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Measurement {
+public class Measurement implements Cloneable {
     private String stationId;
     private LocalDateTime dateStamp;
 
@@ -30,12 +29,13 @@ public class Measurement {
     }
 
     private void ParseRawMeasurement(RawMeasurement data) {
+        this.dateStamp = data.getDateStamp();
         this.insideTemperature = ValueConverter.temperature(data.getInsideTemp());
         this.outsideTemperature = ValueConverter.temperature(data.getOutsideTemp());
 
         this.airpressure = ValueConverter.inchesHgToHectoPascal(data.getBarometer());
         this.insideHumidity = ValueConverter.humidity(data.getInsideHum());
-        this.outsideHumidity = ValueConverter.humidity(data.getOutsideTemp());
+        this.outsideHumidity = ValueConverter.humidity(data.getOutsideHum());
 
         this.windSpeed = ValueConverter.windSpeed(data.getWindSpeed());
         this.averageWindSpeed = ValueConverter.windSpeed(data.getAvgWindSpeed());
@@ -106,6 +106,11 @@ public class Measurement {
 
     public double getOutsideTemperature() {
         return outsideTemperature;
+    }
+
+    public boolean isSameDay(Measurement otherMeasurement) {
+        LocalDateTime comparingDateStamp = otherMeasurement.getDateStamp();
+        return dateStamp.getMonthValue() == comparingDateStamp.getMonthValue() && dateStamp.getDayOfMonth() == comparingDateStamp.getDayOfMonth() && dateStamp.getYear() == comparingDateStamp.getYear();
     }
 
     public void setOutsideTemperature(double outsideTemperature) {
@@ -263,13 +268,19 @@ public class Measurement {
         if (solarRadiaton == 32767){
             return false;
         }
-        if (xmitBatt == 0){
+        ///Disabled because of weird data
+/*        if (xmitBatt == 0){
             return false;
         }
         if (battLevel == 0){
             return false;
 
-        }
+        }*/
         return true;
+    }
+
+    @Override
+    protected Measurement clone() throws CloneNotSupportedException {
+        return (Measurement)super.clone();
     }
 }
