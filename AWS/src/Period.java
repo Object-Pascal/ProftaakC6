@@ -1,3 +1,4 @@
+import java.security.MessageDigest;
 import java.time.*;
 import java.time.temporal.*;
 import java.util.ArrayList;
@@ -132,10 +133,10 @@ public class Period {
 
 
 	public ArrayList<Double> getInsideTemperatures(){
-		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<RawMeasurement> measurements = getRawMeasurements();
 		ArrayList<Double> getallen = new ArrayList<Double>();
-		for (Measurement x : measurements){
-			getallen.add(x.getInsideTemperature());
+		for (RawMeasurement x : measurements){
+			getallen.add((double)x.getInsideTemp());
 		}
 		return getallen;
 	}
@@ -165,14 +166,17 @@ public class Period {
 	}
 
 	public ArrayList<Double> getOutsideTemperatures(){
-		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<Measurement> measurements = new ArrayList<>();
 		ArrayList<Double> getallen = new ArrayList<Double>();
+		for (RawMeasurement raw : getRawMeasurements()) {
+			measurements.add(new Measurement(raw));
+		}
+
 		for (Measurement x : measurements){
-			getallen.add(x.getOutsideTemperature()));
+			getallen.add((double)x.getOutsideTemperature());
 		}
 		return getallen;
 	}
-
 	public double getMaxOutsideTemp(){
 		return max(getOutsideTemperatures());
 	}
@@ -263,6 +267,13 @@ public class Period {
 		return standaardafwijking(getOutsideHumidity());
 	}
 
+	public LocalDate getBeginPeriod() {
+		return beginPeriod;
+	}
+
+	public LocalDate getEndPeriod() {
+		return endPeriod;
+	}
 
 	public double max(ArrayList<Double> numbers){
 	 double eerste = numbers.get(0);
@@ -294,16 +305,22 @@ public class Period {
 	}
 
 	public double median(ArrayList<Double> numbers){
-
+ 		return 1;
 	}
 
 	public double modus(ArrayList<Double> numbers){
-
+		return 1;
 	}
 
 	public double standaardafwijking(ArrayList<Double> numbers){
+		return 1;
+	}
+
+	public double graaddagen(Period period) {
 
 	}
+
+
 
 
 
