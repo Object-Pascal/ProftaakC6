@@ -36,14 +36,6 @@ public class Period {
 		this.endPeriod = LocalDate.now();
 	}
 
-	public LocalDate getBeginPeriod() {
-		return this.beginPeriod;
-	}
-
-	public LocalDate getEndPeriod() {
-		return this.endPeriod;
-	}
-
 	/**
 	 * Simple setter for start of period
 	 */
