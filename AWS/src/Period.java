@@ -352,8 +352,26 @@ public class Period {
 	}
 
 
-	public double graaddagen(Period period) {
-return 1;
+	public int graaddagen() {
+		int graaddagen = 0;
+		ArrayList<ArrayList<Measurement>> lijst = getMeasurementsPerDay();
+		ArrayList<Double> buiten = new ArrayList<>();
+		for (ArrayList<Measurement> measurement : lijst) {
+			for (Measurement measure : measurement) {
+				buiten.add(measure.getOutsideTemperature());
+			}
+			double gemiddeldBuiten = gemiddelde(buiten);
+			int counter = 0;
+			double totaal = 0;
+			if (gemiddeldBuiten < 18) {
+				totaal += gemiddeldBuiten;
+				counter++;
+			}
+			graaddagen += (int)(18*counter - totaal);
+			System.out.println(gemiddeldBuiten);
+		}
+
+		return graaddagen;
 	}
 
 	public double modus(ArrayList<Double> numbers){
