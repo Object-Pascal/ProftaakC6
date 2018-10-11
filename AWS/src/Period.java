@@ -1,3 +1,4 @@
+import java.security.MessageDigest;
 import java.time.*;
 import java.time.temporal.*;
 import java.util.ArrayList;
@@ -176,10 +177,10 @@ public class Period {
 	}
 
 	public ArrayList<Double> getInsideTemperatures(){
-		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<RawMeasurement> measurements = getRawMeasurements();
 		ArrayList<Double> getallen = new ArrayList<Double>();
-		for (Measurement x : measurements){
-			getallen.add(x.getInsideTemperature());
+		for (RawMeasurement x : measurements){
+			getallen.add((double)x.getInsideTemp());
 		}
 		return getallen;
 	}
@@ -235,14 +236,21 @@ public class Period {
 	}
 
 	public ArrayList<Double> getOutsideTemperatures(){
-		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<Measurement> measurements = new ArrayList<>();
 		ArrayList<Double> getallen = new ArrayList<Double>();
+		for (RawMeasurement raw : getRawMeasurements()) {
+			measurements.add(new Measurement(raw));
+		}
+
 		for (Measurement x : measurements){
+
+			getallen.add((double)x.getOutsideTemperature());
+
 			getallen.add(x.getOutsideTemperature());
+
 		}
 		return getallen;
 	}
-
 	public double getMaxOutsideTemp(){
 		return max(getOutsideTemperatures());
 	}
@@ -333,6 +341,13 @@ public class Period {
 		return standaardafwijking(getOutsideHumidity());
 	}
 
+	public LocalDate getBeginPeriod() {
+		return beginPeriod;
+	}
+
+	public LocalDate getEndPeriod() {
+		return endPeriod;
+	}
 
 	public double max(ArrayList<Double> numbers){
 	 double eerste = numbers.get(0);
@@ -364,7 +379,30 @@ public class Period {
 	}
 
 	public double median(ArrayList<Double> numbers){
-		return 0.0;
+ 		return 1;
+	}
+
+
+	public int graaddagen() {
+		int graaddagen = 0;
+		ArrayList<ArrayList<Measurement>> lijst = getMeasurementsPerDay();
+		ArrayList<Double> buiten = new ArrayList<>();
+		for (ArrayList<Measurement> measurement : lijst) {
+			for (Measurement measure : measurement) {
+				buiten.add(measure.getOutsideTemperature());
+			}
+			double gemiddeldBuiten = gemiddelde(buiten);
+			int counter = 0;
+			double totaal = 0;
+			if (gemiddeldBuiten < 18) {
+				totaal += gemiddeldBuiten;
+				counter++;
+			}
+			graaddagen += (int)(18*counter - totaal);
+			System.out.println(gemiddeldBuiten);
+		}
+
+		return graaddagen;
 	}
 
 	public double modus(ArrayList<Double> numbers){
