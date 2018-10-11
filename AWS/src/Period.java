@@ -35,6 +35,14 @@ public class Period {
 		this.endPeriod = LocalDate.now();
 	}
 
+	public LocalDate getBeginPeriod() {
+		return this.beginPeriod;
+	}
+
+	public LocalDate getEndPeriod() {
+		return this.endPeriod;
+	}
+
 	/**
 	 * Simple setter for start of period
 	 */
@@ -133,15 +141,38 @@ public class Period {
 
 	public Period getLongestConnectedSummerDays() {
 		ArrayList<ArrayList<Measurement>> periodicMeasurements = getMeasurementsPerDay();
-		for (ArrayList<Measurement> dailyCollection : periodicMeasurements) {
-			double dailyAverageTemperature = 0.0;
-			for (Measurement m : dailyCollection) {
-				dailyAverageTemperature += m.getOutsideTemperature();
+		ArrayList<Boolean> isSummerDay = new ArrayList<>();
+		for (int i = 0; i < periodicMeasurements.size(); i++) {
+			ArrayList<Measurement> dailyMeasurements = periodicMeasurements.get(i);
+			double highestTemperature = 0.0;
+			for (Measurement m: dailyMeasurements) {
+				double temperature = m.getOutsideTemperature();
+				if (highestTemperature <= temperature)
+					highestTemperature = temperature;
 			}
-			dailyAverageTemperature /= (double)dailyCollection.size();
-			System.out.println(dailyAverageTemperature);
+
+			isSummerDay.add(highestTemperature >= 25.0);
 		}
-		return null;
+
+		ArrayList<ArrayList<LocalDateTime>> connectedMeasurementsDates = new ArrayList<>();
+		ArrayList<LocalDateTime> currentCollection = new ArrayList<>();
+		for (int i = 0; i < isSummerDay.size(); i++) {
+			while(isSummerDay.get(i)) {
+				currentCollection.add(periodicMeasurements.get(i).get(0).getDateStamp());
+				i++;
+			}
+
+			connectedMeasurementsDates.add(currentCollection);
+			currentCollection = new ArrayList<>();
+		}
+
+		ArrayList<LocalDateTime> longestPeriod = connectedMeasurementsDates.get(0);
+		for (int i = 1; i < connectedMeasurementsDates.size(); i++) {
+			if (longestPeriod.size() < connectedMeasurementsDates.get(i).size())
+				longestPeriod = connectedMeasurementsDates.get(i);
+		}
+
+		return new Period(longestPeriod.get(0).toLocalDate(), longestPeriod.get(longestPeriod.size() - 1).toLocalDate());
 	}
 
 	public ArrayList<Double> getInsideTemperatures(){
