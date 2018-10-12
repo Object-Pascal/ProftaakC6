@@ -1,14 +1,9 @@
-
-import com.sun.javafx.binding.StringFormatter;
 import sun.awt.SunHints;
-
-
-import java.text.SimpleDateFormat;
 
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 
-public class Measurement implements Cloneable {
+public class Measurement {
     private String stationId;
     private LocalDateTime dateStamp;
 
@@ -35,13 +30,12 @@ public class Measurement implements Cloneable {
     }
 
     private void ParseRawMeasurement(RawMeasurement data) {
-        this.dateStamp = data.getDateStamp();
         this.insideTemperature = ValueConverter.temperature(data.getInsideTemp());
         this.outsideTemperature = ValueConverter.temperature(data.getOutsideTemp());
 
         this.airpressure = ValueConverter.inchesHgToHectoPascal(data.getBarometer());
         this.insideHumidity = ValueConverter.humidity(data.getInsideHum());
-        this.outsideHumidity = ValueConverter.humidity(data.getOutsideHum());
+        this.outsideHumidity = ValueConverter.humidity(data.getOutsideTemp());
 
         this.windSpeed = ValueConverter.windSpeed(data.getWindSpeed());
         this.averageWindSpeed = ValueConverter.windSpeed(data.getAvgWindSpeed());
@@ -67,7 +61,7 @@ public class Measurement implements Cloneable {
         String s = "RawMeasurement:"
                 + "\nstationId = \t" + stationId
                 + "\ndateStamp = \t" + dateStamp
-                + "\nbarometer = \t" + String.format("%.2f",airpressure)
+                + "\nbarometer = \t" + airpressure
                 + "\ninsideTemp = \t" + insideTemperature
                 + "\ninsideHum = \t" + insideHumidity
                 + "\noutsideTemp = \t" + outsideTemperature
@@ -112,11 +106,6 @@ public class Measurement implements Cloneable {
 
     public double getOutsideTemperature() {
         return outsideTemperature;
-    }
-
-    public boolean isSameDay(Measurement otherMeasurement) {
-        LocalDateTime comparingDateStamp = otherMeasurement.getDateStamp();
-        return dateStamp.getMonthValue() == comparingDateStamp.getMonthValue() && dateStamp.getDayOfMonth() == comparingDateStamp.getDayOfMonth() && dateStamp.getYear() == comparingDateStamp.getYear();
     }
 
     public void setOutsideTemperature(double outsideTemperature) {
@@ -241,53 +230,5 @@ public class Measurement implements Cloneable {
 
     public void setForeIcon(short foreIcon) {
         this.foreIcon = foreIcon;
-    }
-
-    public boolean isValid(){
-        if (outsideTemperature > 60 || outsideTemperature < -60){
-            return false;
-        }
-        if (insideTemperature > 40 || insideTemperature < -10){
-            return false;
-        }
-        if (airpressure == 0 ){
-            return false;
-        }
-        if (insideHumidity < 0 || insideHumidity >100){
-            return false;
-        }
-        if (outsideHumidity < 0 || outsideHumidity > 100){
-            return false;
-        }
-        if (windSpeed > 254 || windSpeed < 0){
-            return false;
-        }
-        if (windDirection.equals("32767")){
-            return false;
-        }
-        if (rainRate == 32767){
-            return false;
-        }
-        if (uvIndex > 24){
-            return  false;
-        }
-        if (solarRadiaton == 32767){
-            return false;
-        }
-        ///Disabled because of weird data
-        /*     if (xmitBatt == 0){
-            return false;
-        }
-        */
-        if (battLevel == 0){
-            return false;
-
-        }
-        return true;
-    }
-
-    @Override
-    protected Measurement clone() throws CloneNotSupportedException {
-        return (Measurement)super.clone();
     }
 }

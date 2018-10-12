@@ -27,7 +27,7 @@ public class ValueConverterTests {
         System.out.println("latest values: " + "\n" + lastvalues);
         */
 
-
+    }
 
 
     public static void testTemperature() {
