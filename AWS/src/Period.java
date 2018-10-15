@@ -1,9 +1,12 @@
+
+
 import java.security.MessageDigest;
 import java.time.*;
 import java.time.temporal.*;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.concurrent.Delayed;
 
 /**
  * A class to contain a period of time
@@ -16,12 +19,32 @@ public class Period {
 	private LocalDate endPeriod;
 
 	public static void main(String[] args) {
-	Period testperiod = new Period();
-	testperiod.setStart(2017,12,1);
-	testperiod.setEnd(2017,12,10);
-	ArrayList<Double> insidetemp = testperiod.getInsideTemperatures();
-	ArrayList<Double> outsidetemp = testperiod.getOutsideTemperatures();
-		System.out.println(testperiod.tempOverlap(insidetemp,outsidetemp));
+
+		DisplayManager manager = new DisplayManager("192.168.178.36");
+		IO.init();
+		while(IO.readShort(0x80) != 0) {
+			//hier komt de tijdmethode van Hanno!
+			if(IO.readShort(0x100) == 1){
+				//Hier komt de scroll methode!
+				manager.writeText("test");
+				IO.delay(500);
+			}
+			if(IO.readShort(0x90)==1){
+				//hier komt de tabblad methode!
+				manager.writeText("test2");
+				IO.delay(500);
+			}
+		//ALLES WAT INVLOED HEEFT OP HET GUI MOET HIER IN!!!
+		}
+		manager.clearScreen();
+
+	//	if ( IO.readShort(0x80) != 0 )
+		//{
+		//	IO.writeShort(0x42,5);
+	//	}
+
+
+
 	}
 
 	/**
@@ -434,15 +457,17 @@ public class Period {
 		return graaddagen;
 	}
 
-	public int tempOverlap(ArrayList<Double> insidetemp,ArrayList<Double> outsidetemp) {
+	public int tempOverlap(Period period) {
 		int counter = 0;
 		int size;
-		if(insidetemp.size() > outsidetemp.size()){
-			size = outsidetemp.size();
+		if(period.getInsideTemperatures().size() > period.getOutsideTemperatures().size()){
+			size = period.getOutsideTemperatures().size();
 		}
 		else{
-			size = insidetemp.size();
+			size = period.getInsideTemperatures().size();
 		}
+		ArrayList<Double> insidetemp = period.getInsideTemperatures();
+		ArrayList<Double> outsidetemp = period.getOutsideTemperatures();
 
 		for (int i = 1; i < size; i++) {
 			if ((insidetemp.get(i - 1) < outsidetemp.get(i - 1)) && insidetemp.get(i) > outsidetemp.get(i)) {

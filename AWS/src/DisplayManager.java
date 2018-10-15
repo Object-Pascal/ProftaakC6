@@ -4,7 +4,7 @@ public class DisplayManager {
     private String ip;
     private int[] addresses = {0x18,0x16,0x14,0x12,0x10,0x24,0x22,0x20,0x34,0x32,0x30};
 
-    private DisplayManager(String ip) {
+    public DisplayManager(String ip) {
         this.ip = ip;
         IO.init(ip);
     }
