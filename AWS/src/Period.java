@@ -509,9 +509,11 @@ public class Period {
 		return graaddagen;
 	}
 
-	public static void maxAaneengeslotenRegenval(){
+	public static int maxAaneengeslotenRegenval(){
 		ArrayList<Measurement> measurements = getMeasurements();
 		ArrayList<Double> rainrate = new ArrayList<Double>();
+		int maxRegenval = 0;
+
 		for (Measurement x : measurements){
 			rainrate.add(x.getRainrate());
 		}
@@ -541,9 +543,9 @@ public class Period {
 		}
 		else{}
 		maxRegenval = (maxRegenval / 60.0);
-		maxRegenval = maxRegenval* 25.4;
-		maxRegenval = Math.round(maxRegenval * 10)/10.0;
-		System.out.println("Maximale aaneengesloten regen die gevallen is: " +maxRegenval+" mm." );
+		maxRegenval = maxRegenval * 25.4;
+
+		return Math.round(maxRegenval * 10) / 10.0;;
 	}
 
 	public int tempOverlap(Period period) {
