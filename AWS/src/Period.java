@@ -1,12 +1,8 @@
-﻿
-
-import java.security.MessageDigest;
 import java.time.*;
 import java.time.temporal.*;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
-import java.util.concurrent.Delayed;
+
 
 /**
  * A class to contain a period of time
@@ -497,7 +493,7 @@ public class Period {
 
 
 			if(regenval > 10000) {
-				//Ireële waarde
+				//Ire?le waarde
 			}
 			else if(regenval == 0)
 			{

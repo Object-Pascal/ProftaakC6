@@ -50,7 +50,13 @@ public class DisplayManager {
     public void clearScreen() {
         IO.writeShort(0x40, 0xFE);
         IO.writeShort(0x40, 0x01);
-    }
+        IO.writeShort(0x10, 0x100);
+        IO.writeShort(0x12, 0x100);
+        IO.writeShort(0x14, 0x100);
+        IO.writeShort(0x16, 0x100);
+        IO.writeShort(0x18, 0x100);
+        }
+
 
     public ArrayList<SegmentDisplay> getDisplays() {
         ArrayList<SegmentDisplay> displays = new ArrayList<>();
