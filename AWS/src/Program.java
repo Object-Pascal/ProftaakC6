@@ -141,17 +141,17 @@ public class Program {
 
       pages.add(() -> {
           DisplayManager.getInstance().writeText("Regenval (1/2)\n");
-          DisplayManager.getInstance().writeText("MIN: " + (double)Math.round(periode.getMinRainrate() * 10) / 10 + "%");
-          DisplayManager.getInstance().writeText(" GEM: " + (double)Math.round(periode.getGemiddeldeRainrate() * 10) / 10 + "%");
-          DisplayManager.getInstance().writeText("\nMAX: " + (double)Math.round(periode.getMaxRainrate() * 10) / 10 + "%");
+          DisplayManager.getInstance().writeText("MIN: " + (double)Math.round(periode.getMinRainrate() * 10) / 10 + "mm");
+          DisplayManager.getInstance().writeText(" GEM: " + (double)Math.round(periode.getGemiddeldeRainrate() * 10) / 10 + "mm");
+          DisplayManager.getInstance().writeText("\nMAX: " + (double)Math.round(periode.getMaxRainrate() * 10) / 10 + "mm");
           IO.delay(10);
       });
 
       pages.add(() -> {
           DisplayManager.getInstance().writeText("Regenval (2/2)\n");
-          DisplayManager.getInstance().writeText("MOD: " + (double)Math.round(periode.getModusRainrate() * 10) / 10 + "%"+" Stdafw:");
-          DisplayManager.getInstance().writeText("\nMED: " + (double)Math.round(periode.getMedianRainrate() * 10) / 10 + "%");
-          DisplayManager.getInstance().writeText("    " + (double)Math.round(periode.getStandaardafwijkingRainrate() * 10) / 10 + "%");
+          DisplayManager.getInstance().writeText("MOD: " + (double)Math.round(periode.getModusRainrate() * 10) / 10 + "mm"+" Stdafw:");
+          DisplayManager.getInstance().writeText("\nMED: " + (double)Math.round(periode.getMedianRainrate() * 10) / 10 + "mm");
+          DisplayManager.getInstance().writeText("    " + (double)Math.round(periode.getStandaardafwijkingRainrate() * 10) / 10 + "mm");
           IO.delay(10);
       });
 
@@ -172,22 +172,29 @@ public class Program {
       });
 
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Page 15");
+          DisplayManager.getInstance().writeText("Windrichting: " + periode.windRichting());
+          DisplayManager.getInstance().writeText("\nUVLevel: " + periode.getUVLevel());
+          DisplayManager.getInstance().writeText("\nSolarRad: " + periode.getSolarRad());
           IO.delay(10);
       });
 
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Page 16");
+          //TODO: SUNRISE SUNSET STIJN
+          DisplayManager.getInstance().writeText("Sunrise: komt nog");
+          DisplayManager.getInstance().writeText("\nSunset: komt nog");
           IO.delay(10);
       });
 
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Page 17");
+          DisplayManager.getInstance().writeText("Graaddagen: " + periode.graaddagen());
+          DisplayManager.getInstance().writeText("\nLangste droogte: " + periode.longestDrought().numberOfDays());
+          DisplayManager.getInstance().writeText("\nTemp overlap: " + periode.tempOverlap());
           IO.delay(10);
       });
 
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Page 18");
+          DisplayManager.getInstance().writeText("Max regen.: " + (int)periode.maxAaneengeslotenRegenval());
+          DisplayManager.getInstance().writeText(" dagen \nLangst zomer: " + periode.getLongestConnectedSummerDays().numberOfDays() + " dagen");
           IO.delay(10);
       });
 

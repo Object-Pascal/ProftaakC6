@@ -490,6 +490,24 @@ public class Period {
 		return standaardafwijking(getOutsideHumidity());
 	}
 
+	public double getUVLevel () {
+		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<Double> getallen = new ArrayList<Double>();
+		for (Measurement x : measurements){
+			getallen.add(x.getUvIndex());
+		}
+		return getallen.get(0);
+	}
+
+	public double getSolarRad () {
+		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<Double> getallen = new ArrayList<Double>();
+		for (Measurement x : measurements){
+			getallen.add(x.getSolarRadiaton());
+		}
+		return getallen.get(0);
+	}
+
 	public LocalDate getBeginPeriod() {
 		return beginPeriod;
 	}
@@ -679,17 +697,17 @@ public class Period {
 		return temp / 10;
 	}
 
-	public int tempOverlap(Period period) {
+	public int tempOverlap() {
 		int counter = 0;
 		int size;
-		if(period.getInsideTemperatures().size() > period.getOutsideTemperatures().size()){
-			size = period.getOutsideTemperatures().size();
+		if(getInsideTemperatures().size() > getOutsideTemperatures().size()){
+			size = getOutsideTemperatures().size();
 		}
 		else{
-			size = period.getInsideTemperatures().size();
+			size = getInsideTemperatures().size();
 		}
-		ArrayList<Double> insidetemp = period.getInsideTemperatures();
-		ArrayList<Double> outsidetemp = period.getOutsideTemperatures();
+		ArrayList<Double> insidetemp = getInsideTemperatures();
+		ArrayList<Double> outsidetemp = getOutsideTemperatures();
 
 		for (int i = 1; i < size; i++) {
 			if ((insidetemp.get(i - 1) < outsidetemp.get(i - 1)) && insidetemp.get(i) > outsidetemp.get(i)) {
