@@ -404,6 +404,18 @@ public class Period {
 		return gemiddelde(getWindSpeed());
 	}
 
+	public double getMedianWindSpeed(){
+		return median(getWindSpeed());
+	}
+
+	public double getModusWindSpeed(){
+		return modus(getWindSpeed());
+	}
+
+	public double getStandaardafwijkingWindSpeed(){
+		return standaardafwijking(getWindSpeed());
+	}
+
 	public double getMaxOutsideHumidity(){
 		return max(getOutsideHumidity());
 	}
@@ -428,6 +440,19 @@ public class Period {
 		return gemiddelde(getInsideHumidity());
 	}
 
+	public double getMedianInsideHumidity(){
+		return median(getInsideHumidity());
+	}
+
+	public double getModusInsideHumidity(){
+		return modus(getInsideHumidity());
+	}
+
+	public double getStandaardafwijkingInsideHumidity(){
+		return standaardafwijking(getInsideHumidity());
+	}
+
+
 	public double getMaxRainrate(){
 		return max(getRainrate());
 	}
@@ -438,6 +463,18 @@ public class Period {
 
 	public double getGemiddeldeRainrate(){
 		return gemiddelde(getRainrate());
+	}
+
+	public double getMedianRainrate(){
+		return median(getRainrate());
+	}
+
+	public double getModusRainrate(){
+		return modus(getRainrate());
+	}
+
+	public double getStandaardafwijkingRainrate(){
+		return standaardafwijking(getRainrate());
 	}
 
 	public double getMedianOutsideHumidity(){
@@ -579,8 +616,6 @@ public class Period {
 				modeList.add(mode);
 			}
 		}
-		System.out.println(uniqueValues);
-		System.out.println(uniqueCount);
 		return ((int)(Math.round(modeList.get(0)*10))/10.0);
 	}
 
