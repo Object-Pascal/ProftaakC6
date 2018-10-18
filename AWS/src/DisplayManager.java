@@ -8,7 +8,10 @@ public class DisplayManager {
     public DisplayManager(String ip) {
         this.ip = ip;
         IO.init(ip);
-        this.pixelFont = BdfParser.bdfToCharacters("C:\\Users\\stijn\\Downloads\\tom-thumb.bdf");
+
+
+        this.pixelFont = BdfParser.bdfToCharacters("resources\\tom-thumb.bdf");
+
     }
     
     public void writeText(String text) {

@@ -5,6 +5,7 @@ public class Program {
 
     //Main entry point of the program
     public static void main(String[] args) {
+
         DisplayManager manager = new DisplayManager("127.0.0.1");
         IO.init();
         while(IO.readShort(0x80) != 0) {
@@ -22,6 +23,19 @@ public class Program {
         }
         manager.clearScreen();
 
+        DisplayManager manager = DisplayManager.Initialize("127.0.0.1");
+        /*
+        ArrayList<SegmentDisplay> displays = manager.getDisplays();
+
+        manager.setPixel(5, 5);
+        manager.setPixel(5, 6);
+        manager.setPixel(6, 5);
+        manager.setPixel(6, 6);
+
+        for (int i = 0; i < 128; i++) {
+            manager.setPixel(0, 1, DISPLAYMATRIX_OPCODES.MOVE_DISPLAY);
+            IO.delay(100);
+        }*/
 /*        ArrayList<IPageBehaviour> pages = new ArrayList<>();
         pages.add(() -> {
             DisplayManager.getInstance().writeText("Page 1");

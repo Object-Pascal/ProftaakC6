@@ -1,4 +1,4 @@
-
+﻿
 
 import java.security.MessageDigest;
 import java.time.*;
@@ -17,6 +17,13 @@ import java.util.concurrent.Delayed;
 public class Period {
 	private LocalDate beginPeriod;
 	private LocalDate endPeriod;
+
+
+
+
+	/**
+	 * default constructor, sets the period to today
+	 */
 
 	public Period() {
 		beginPeriod = LocalDate.now();
