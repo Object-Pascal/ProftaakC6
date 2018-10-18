@@ -1,3 +1,4 @@
+
 import java.lang.reflect.Array;
 import java.time.*;
 import java.time.temporal.*;
@@ -404,6 +405,18 @@ public class Period {
 		return gemiddelde(getWindSpeed());
 	}
 
+	public double getMedianWindSpeed(){
+		return median(getWindSpeed());
+	}
+
+	public double getModusWindSpeed(){
+		return modus(getWindSpeed());
+	}
+
+	public double getStandaardafwijkingWindSpeed(){
+		return standaardafwijking(getWindSpeed());
+	}
+
 	public double getMaxOutsideHumidity(){
 		return max(getOutsideHumidity());
 	}
@@ -428,6 +441,19 @@ public class Period {
 		return gemiddelde(getInsideHumidity());
 	}
 
+	public double getMedianInsideHumidity(){
+		return median(getInsideHumidity());
+	}
+
+	public double getModusInsideHumidity(){
+		return modus(getInsideHumidity());
+	}
+
+	public double getStandaardafwijkingInsideHumidity(){
+		return standaardafwijking(getInsideHumidity());
+	}
+
+
 	public double getMaxRainrate(){
 		return max(getRainrate());
 	}
@@ -440,6 +466,18 @@ public class Period {
 		return gemiddelde(getRainrate());
 	}
 
+	public double getMedianRainrate(){
+		return median(getRainrate());
+	}
+
+	public double getModusRainrate(){
+		return modus(getRainrate());
+	}
+
+	public double getStandaardafwijkingRainrate(){
+		return standaardafwijking(getRainrate());
+	}
+
 	public double getMedianOutsideHumidity(){
 		return median(getOutsideHumidity());
 	}
@@ -450,6 +488,24 @@ public class Period {
 
 	public double getStandaardafwijkingOutsideHumidity(){
 		return standaardafwijking(getOutsideHumidity());
+	}
+
+	public double getUVLevel () {
+		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<Double> getallen = new ArrayList<Double>();
+		for (Measurement x : measurements){
+			getallen.add(x.getUvIndex());
+		}
+		return getallen.get(0);
+	}
+
+	public double getSolarRad () {
+		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<Double> getallen = new ArrayList<Double>();
+		for (Measurement x : measurements){
+			getallen.add(x.getSolarRadiaton());
+		}
+		return getallen.get(0);
 	}
 
 	public LocalDate getBeginPeriod() {
@@ -516,26 +572,26 @@ public class Period {
 	}
 
 	public String windRichting() {
-		Measurement test = new Measurement();
-		double graden = (test.getWindDirection()%  360.0);
-		if (graden > 337.5 || graden < 22.5 && graden >0){
+		RawMeasurement raw = DatabaseConnection.getMostRecentMeasurement();
+		double graden =raw.getWindDir()%360;
+			if (graden >= 337.5 || graden < 22.5){
 			return "N";
-		}else if (graden > 22.5 && graden < 67.5){
+		}else if (graden >= 22.5 && graden < 67.5){
 			return "NO";
-		}else if (graden > 67.5 && graden < 112.5){
+		}else if (graden >= 67.5 && graden < 112.5){
 			return "O";
-		}else if (graden > 112.5 && graden < 157.5){
+		}else if (graden >= 112.5 && graden < 157.5){
 			return "ZO";
-		}else if (graden > 157.5 && graden < 202.5){
+		}else if (graden >= 157.5 && graden < 202.5){
 			return "Z";
-		}else if (graden > 202.5 && graden < 247.5){
+		}else if (graden >= 202.5 && graden < 247.5){
 			return "ZW";
-		}else if (graden > 247.5 && graden < 292.5){
+		}else if (graden >= 247.5 && graden < 292.5){
 			return "W";
-		}else if (graden > 292.5 && graden < 337.5){
+		}else if (graden >= 292.5 && graden < 337.5){
 			return "NW";
 		}else{
-			return "Er staat geen wind";
+			return "ERROR";
 		}
 	}
 
@@ -579,8 +635,6 @@ public class Period {
 				modeList.add(mode);
 			}
 		}
-		System.out.println(uniqueValues);
-		System.out.println(uniqueCount);
 		return ((int)(Math.round(modeList.get(0)*10))/10.0);
 	}
 
@@ -643,17 +697,17 @@ public class Period {
 		return temp / 10;
 	}
 
-	public int tempOverlap(Period period) {
+	public int tempOverlap() {
 		int counter = 0;
 		int size;
-		if(period.getInsideTemperatures().size() > period.getOutsideTemperatures().size()){
-			size = period.getOutsideTemperatures().size();
+		if(getInsideTemperatures().size() > getOutsideTemperatures().size()){
+			size = getOutsideTemperatures().size();
 		}
 		else{
-			size = period.getInsideTemperatures().size();
+			size = getInsideTemperatures().size();
 		}
-		ArrayList<Double> insidetemp = period.getInsideTemperatures();
-		ArrayList<Double> outsidetemp = period.getOutsideTemperatures();
+		ArrayList<Double> insidetemp = getInsideTemperatures();
+		ArrayList<Double> outsidetemp = getOutsideTemperatures();
 
 		for (int i = 1; i < size; i++) {
 			if ((insidetemp.get(i - 1) < outsidetemp.get(i - 1)) && insidetemp.get(i) > outsidetemp.get(i)) {
