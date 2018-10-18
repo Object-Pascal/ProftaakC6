@@ -1,8 +1,8 @@
+import java.lang.reflect.Array;
 import java.time.*;
 import java.time.temporal.*;
 import java.util.ArrayList;
 import java.util.Collections;
-
 
 /**
  * A class to contain a period of time
@@ -16,10 +16,10 @@ public class Period {
 
 
 
-
 	/**
 	 * default constructor, sets the period to today
 	 */
+
 
 	public Period() {
 		beginPeriod = LocalDate.now();
@@ -419,7 +419,7 @@ public class Period {
 
 	}
 
-	public double gemiddelde(ArrayList<Double> numbers){
+	public static double gemiddelde(ArrayList<Double> numbers){
 		double som = 0;
 		for (double x:numbers) {
 			som = som + x;

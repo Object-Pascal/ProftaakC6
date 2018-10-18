@@ -6,36 +6,30 @@ public class Program {
 
     //Main entry point of the program
     public static void main(String[] args) {
-        DisplayManager manager = new DisplayManager("127.0.0.1");
+        DisplayManager manager =  DisplayManager.Initialize("127.0.0.1");
         IO.init();
         pageManager =  new PageManager(loadPages());
-        klok();
         while (IO.readShort(0x80) != 0) {
             klok();
             pageManager.showActivePage();
             if (IO.readShort(0x100) == 1) {
-                //Hier komt de scroll methode!
-                manager.writeText("test");
-                IO.delay(500);
+                pageManager.nextPage();
+                while(IO.readShort(0x100) == 1){
+
+                }
             }
             if (IO.readShort(0x90) == 1) {
+                pageManager.previousPage();
+                while(IO.readShort(0x90) == 1){
 
-                manager.writeText("test2");
-                IO.delay(500);
+                }
             }
             IO.delay(50);
-            //ALLES WAT INVLOED HEEFT OP HET GUI MOET HIER IN!!!
         }
-        manager.clearScreen();
+        manager.clearAll();
     }
 
-    public static void clearKlok(){
-            IO.writeShort(0x10, 0x100);
-            IO.writeShort(0x12, 0x100);
-            IO.writeShort(0x14, 0x100);
-            IO.writeShort(0x16, 0x100);
-            IO.writeShort(0x18, 0x100);
-    }
+
     private static void klok() {
         LocalTime localTime = LocalTime.now();
         String uur = "" + localTime.getHour();
@@ -58,19 +52,16 @@ public class Program {
       pages.add(() -> {
           DisplayManager.getInstance().writeText("Page 1");
           IO.delay(10);
-          DisplayManager.getInstance().clearScreen();
       });
 
       pages.add(() -> {
           DisplayManager.getInstance().writeText("Page 2");
           IO.delay(10);
-          DisplayManager.getInstance().clearScreen();
       });
 
       pages.add(() -> {
           DisplayManager.getInstance().writeText("Page 3");
           IO.delay(10);
-          DisplayManager.getInstance().clearScreen();
       });
       return pages;
   }
