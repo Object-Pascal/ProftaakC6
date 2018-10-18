@@ -7,7 +7,7 @@ public class Program {
     public static ArrayList<Measurement> measurements;
     //Main entry point of the program
     public static void main(String[] args) {
-        periode = new Period(2);
+        periode = new Period(11);
         measurements = periode.getMeasurements();
         DisplayManager manager =  DisplayManager.Initialize("127.0.0.1");
         IO.init();
@@ -59,18 +59,18 @@ public class Program {
       ArrayList<IPageBehaviour> pages = new ArrayList<>();
       pages.add(() -> {
 
+          DisplayManager.getInstance().writeText("Temperatuur(2/2)\nModus: "+);
+
           DisplayManager.getInstance().writeText("Temperatuur (1/2)\n");
           DisplayManager.getInstance().writeText("MIN: " + (double)Math.round(periode.getMinInsideTemp() * 10)/10);
           DisplayManager.getInstance().writeText(" GEM: " + (double)Math.round(periode.getGemiddeldeInsideTemp() * 10)/10);
           DisplayManager.getInstance().writeText("\nMAX: " + (double)Math.round(periode.getMaxInsideTemp() * 10)/10);
+
           IO.delay(10);
       });
 
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Temperatuur (2/2)\n");
-          DisplayManager.getInstance().writeText("Mod: " + (double)Math.round(periode.getModusInsideTemp()*10)/10+" Stdafw:");
-          DisplayManager.getInstance().writeText("\nMed: " + (double)Math.round(periode.getMedianInsideTemp()*10)/10);
-          DisplayManager.getInstance().writeText("    " + (double)Math.round(periode.getStandaardafwijkingInsideTemp()*10)/10);
+          DisplayManager.getInstance().writeText("Page 2");
           IO.delay(10);
       });
 
@@ -82,10 +82,7 @@ public class Program {
           IO.delay(10);
       });
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Barometer (2/2)\n");
-          DisplayManager.getInstance().writeText("Mod: " + (double)Math.round(periode.getModusAirpressure()*10)/10+" Stdafw:");
-          DisplayManager.getInstance().writeText("\nMed: " + (double)Math.round(periode.getMedianAirpressure()*10)/10);
-          DisplayManager.getInstance().writeText("    " + (double)Math.round(periode.getStandaardafwijkingAirpressure()*10)/10);
+          DisplayManager.getInstance().writeText("Page 4");
           IO.delay(10);
       });
 
