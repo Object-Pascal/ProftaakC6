@@ -59,6 +59,8 @@ public class Program {
       ArrayList<IPageBehaviour> pages = new ArrayList<>();
       pages.add(() -> {
 
+
+
           DisplayManager.getInstance().writeText("Temperatuur (1/2)\n");
           DisplayManager.getInstance().writeText("MIN: " + (double)Math.round(periode.getMinInsideTemp() * 10)/10);
           DisplayManager.getInstance().writeText(" GEM: " + (double)Math.round(periode.getGemiddeldeInsideTemp() * 10)/10);
