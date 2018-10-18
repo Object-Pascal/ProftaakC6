@@ -87,8 +87,8 @@ public class ValueConverterTests {
 
     public static void testWindDirection() {
         short testValue = 277;
-        String answer = "277°";
-        String directionAnswer = ValueConverter.windDirection(testValue);
+        double answer = 277.0;
+        double directionAnswer = ValueConverter.windDirection(testValue);
 
         System.out.println("Direction Calculated: " + directionAnswer + " | Should be: " + answer );
     }
