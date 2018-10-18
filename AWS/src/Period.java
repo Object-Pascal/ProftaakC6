@@ -1,8 +1,8 @@
+import java.lang.reflect.Array;
 import java.time.*;
 import java.time.temporal.*;
 import java.util.ArrayList;
 import java.util.Collections;
-
 
 /**
  * A class to contain a period of time
@@ -11,15 +11,15 @@ import java.util.Collections;
  * @version 2.0
  */
 public class Period {
-	private LocalDate beginPeriod;
+	private  LocalDate beginPeriod;
 	private LocalDate endPeriod;
-
 
 
 
 	/**
 	 * default constructor, sets the period to today
 	 */
+
 
 	public Period() {
 		beginPeriod = LocalDate.now();
@@ -226,10 +226,10 @@ public class Period {
 	}
 
 	public ArrayList<Double> getInsideTemperatures(){
-		ArrayList<RawMeasurement> measurements = getRawMeasurements();
+		ArrayList<Measurement> measurements = getMeasurements();
 		ArrayList<Double> getallen = new ArrayList<Double>();
-		for (RawMeasurement x : measurements){
-			getallen.add((double)x.getInsideTemp());
+		for (Measurement x : measurements){
+			getallen.add(x.getInsideTemperature());
 		}
 		return getallen;
 	}
@@ -260,7 +260,7 @@ public class Period {
 		return finalCollection;
 	}
 
-	public double getMaxInsideTemp(){
+	public  double getMaxInsideTemp(){
 		return max(getInsideTemperatures());
 	}
 
@@ -453,6 +453,7 @@ public class Period {
 		return Math.sqrt(average);
 	}
 
+<<<<<<< HEAD
 	public String windRichting() {
 		Measurement test = new Measurement();
 		double graden = (test.getWindDirection()%  360.0);
@@ -479,6 +480,51 @@ public class Period {
 
 	public double modus(ArrayList<Double> numbers){
 		return 0.0;
+=======
+	public Double modus(ArrayList<Double> a)
+	{
+		ArrayList<Double> uniqueValues = new ArrayList<>();
+		ArrayList<Integer> uniqueCount = new ArrayList<>();
+		ArrayList<Double> modeList = new ArrayList<>();
+		int maxCount = 0;
+		for (int i = 0; i < a.size(); i++)
+		{
+			if (!(uniqueValues.contains(a.get(i))))
+			{
+				uniqueValues.add(a.get(i));
+			}
+		}
+
+		for (int j = 0; j < uniqueValues.size() ; j++)
+		{
+			int count = 0;
+			for (int k = 0; k < a.size(); k++)
+			{
+				//double uniqueValue = uniqueValues.get(j);
+				//double comparisonValue = a.get(k);
+				if (uniqueValues.get(j).equals(a.get(k)))
+				{
+					count++;
+					if(count > maxCount)
+					{
+						maxCount = count;
+					}
+				}
+			}
+			uniqueCount.add(count);
+		}
+		for (int h = 0; h < uniqueValues.size(); h++)
+		{
+			if(uniqueCount.get(h) == maxCount)
+			{
+				double mode = uniqueValues.get(h);
+				modeList.add(mode);
+			}
+		}
+		System.out.println(uniqueValues);
+		System.out.println(uniqueCount);
+		return ((int)(Math.round(modeList.get(0)*10))/10.0);
+>>>>>>> 249d91321c1fe0da1aa87c1a6150548511a3d50d
 	}
 
 

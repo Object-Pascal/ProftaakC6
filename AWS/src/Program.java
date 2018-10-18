@@ -3,38 +3,40 @@ import java.util.ArrayList;
 
 public class Program {
     public static PageManager pageManager;
-
+    public static Period periode;
+    public static ArrayList<Measurement> measurements;
     //Main entry point of the program
     public static void main(String[] args) {
-
-        DisplayManager manager = new DisplayManager("127.0.0.1");
+        periode = new Period(11);
+        measurements = periode.getMeasurements();
+        DisplayManager manager =  DisplayManager.Initialize("127.0.0.1");
         IO.init();
-        klok();
+        pageManager =  new PageManager(loadPages());
+        pageManager.printPageNumber();
+        pageManager.showActivePage();
         while (IO.readShort(0x80) != 0) {
             klok();
             if (IO.readShort(0x100) == 1) {
-                //Hier komt de scroll methode!
-                manager.writeText("test");
-                IO.delay(500);
+                pageManager.nextPage();
+                while(IO.readShort(0x100) == 1){
+
+                }
+                pageManager.printPageNumber();
             }
             if (IO.readShort(0x90) == 1) {
-                //hier komt de tabblad methode!
-                manager.writeText("test2");
-                IO.delay(500);
+                pageManager.previousPage();
+                while(IO.readShort(0x90) == 1){
+
+                }
+                pageManager.printPageNumber();
             }
+            pageManager.showActivePage();
             IO.delay(50);
-            //ALLES WAT INVLOED HEEFT OP HET GUI MOET HIER IN!!!
         }
-        manager.clearScreen();
+        manager.clearAll();
     }
 
-    public static void clearKlok(){
-            IO.writeShort(0x10, 0x100);
-            IO.writeShort(0x12, 0x100);
-            IO.writeShort(0x14, 0x100);
-            IO.writeShort(0x16, 0x100);
-            IO.writeShort(0x18, 0x100);
-    }
+
     private static void klok() {
         LocalTime localTime = LocalTime.now();
         String uur = "" + localTime.getHour();
@@ -51,37 +53,69 @@ public class Program {
         IO.writeShort(0x10, minuut.charAt(1));
     }
 
-        /*
-        ArrayList<SegmentDisplay> displays = manager.getDisplays();
 
-        manager.setPixel(5, 5);
-        manager.setPixel(5, 6);
-        manager.setPixel(6, 5);
-        manager.setPixel(6, 6);
+  public static ArrayList<IPageBehaviour> loadPages() {
+      ArrayList<IPageBehaviour> pages = new ArrayList<>();
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 1 :" + (double)Math.round(periode.getMaxInsideTemp() * 10)/10);
+          DisplayManager.getInstance().writeText("Page 1 :" + (double)Math.round(periode.getMaxInsideTemp() * 10)/10);
+          IO.delay(10);
+      });
 
-        for (int i = 0; i < 128; i++) {
-            manager.setPixel(0, 1, DISPLAYMATRIX_OPCODES.MOVE_DISPLAY);
-            IO.delay(100);
-        }*/
-/*        ArrayList<IPageBehaviour> pages = new ArrayList<>();
-        pages.add(() -> {
-            DisplayManager.getInstance().writeText("Page 1");
-            IO.delay(10);
-            DisplayManager.getInstance().clearScreen();
-        });
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 2");
+          IO.delay(10);
+      });
 
-        pages.add(() -> {
-            DisplayManager.getInstance().writeText("Page 2");
-            IO.delay(10);
-            DisplayManager.getInstance().clearScreen();
-        });
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 3");
+          IO.delay(10);
+      });
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 4");
+          IO.delay(10);
+      });
 
-        pages.add(() -> {
-            DisplayManager.getInstance().writeText("Page 3");
-            IO.delay(10);
-            DisplayManager.getInstance().clearScreen();
-        });
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 5");
+          IO.delay(10);
+      });
 
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 6");
+          IO.delay(10);
+      });
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 7");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 8");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 9");
+          IO.delay(10);
+      });
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 10");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 11");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 12");
+          IO.delay(10);
+      });
+      return pages;
+  }
+/*
         pages.add(new EasterEggPage());
 
         pageManager = new PageManager(pages);
