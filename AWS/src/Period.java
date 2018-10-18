@@ -505,19 +505,21 @@ public class Period {
 		return graaddagen;
 	}
 
-	public static int maxAaneengeslotenRegenval(){
+	public double maxAaneengeslotenRegenval(){
 		ArrayList<Measurement> measurements = getMeasurements();
 		ArrayList<Double> rainrate = new ArrayList<Double>();
-		int maxRegenval = 0;
+		double maxRegenval = 0;
+		double huidigHoogste = 0.0;
 
 		for (Measurement x : measurements){
-			rainrate.add(x.getRainrate());
+			rainrate.add(x.getRainRate());
 		}
 
 		for(int i = 0; i < rainrate.size(); i++)
 		{
 			double regenval = (rainrate.get(i));
 			double regenvalDouble = regenval;
+
 
 			if(regenval > 10000) {
 				//Ireële waarde
@@ -538,10 +540,9 @@ public class Period {
 			maxRegenval = huidigHoogste;
 		}
 		else{}
-		maxRegenval = (maxRegenval / 60.0);
-		maxRegenval = maxRegenval * 25.4;
 
-		return Math.round(maxRegenval * 10) / 10.0;;
+		int temp = (int)(maxRegenval * 10);
+		return temp / 10;
 	}
 
 	public int tempOverlap(Period period) {
