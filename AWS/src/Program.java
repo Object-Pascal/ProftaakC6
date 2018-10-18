@@ -6,19 +6,20 @@ public class Program {
 
     //Main entry point of the program
     public static void main(String[] args) {
-
         DisplayManager manager = new DisplayManager("127.0.0.1");
         IO.init();
+        pageManager =  new PageManager(loadPages());
         klok();
         while (IO.readShort(0x80) != 0) {
             klok();
+            pageManager.showActivePage();
             if (IO.readShort(0x100) == 1) {
                 //Hier komt de scroll methode!
                 manager.writeText("test");
                 IO.delay(500);
             }
             if (IO.readShort(0x90) == 1) {
-                //hier komt de tabblad methode!
+
                 manager.writeText("test2");
                 IO.delay(500);
             }
@@ -51,37 +52,29 @@ public class Program {
         IO.writeShort(0x10, minuut.charAt(1));
     }
 
-        /*
-        ArrayList<SegmentDisplay> displays = manager.getDisplays();
 
-        manager.setPixel(5, 5);
-        manager.setPixel(5, 6);
-        manager.setPixel(6, 5);
-        manager.setPixel(6, 6);
+  public static ArrayList<IPageBehaviour> loadPages() {
+      ArrayList<IPageBehaviour> pages = new ArrayList<>();
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 1");
+          IO.delay(10);
+          DisplayManager.getInstance().clearScreen();
+      });
 
-        for (int i = 0; i < 128; i++) {
-            manager.setPixel(0, 1, DISPLAYMATRIX_OPCODES.MOVE_DISPLAY);
-            IO.delay(100);
-        }*/
-/*        ArrayList<IPageBehaviour> pages = new ArrayList<>();
-        pages.add(() -> {
-            DisplayManager.getInstance().writeText("Page 1");
-            IO.delay(10);
-            DisplayManager.getInstance().clearScreen();
-        });
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 2");
+          IO.delay(10);
+          DisplayManager.getInstance().clearScreen();
+      });
 
-        pages.add(() -> {
-            DisplayManager.getInstance().writeText("Page 2");
-            IO.delay(10);
-            DisplayManager.getInstance().clearScreen();
-        });
-
-        pages.add(() -> {
-            DisplayManager.getInstance().writeText("Page 3");
-            IO.delay(10);
-            DisplayManager.getInstance().clearScreen();
-        });
-
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 3");
+          IO.delay(10);
+          DisplayManager.getInstance().clearScreen();
+      });
+      return pages;
+  }
+/*
         pages.add(new EasterEggPage());
 
         pageManager = new PageManager(pages);
