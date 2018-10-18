@@ -11,7 +11,7 @@ import java.util.Collections;
  * @version 2.0
  */
 public class Period {
-	private LocalDate beginPeriod;
+	private  LocalDate beginPeriod;
 	private LocalDate endPeriod;
 
 
@@ -229,7 +229,7 @@ public class Period {
 		ArrayList<Measurement> measurements = getMeasurements();
 		ArrayList<Double> getallen = new ArrayList<Double>();
 		for (Measurement x : measurements){
-			getallen.add((double)x.getInsideTemperature());
+			getallen.add(x.getInsideTemperature());
 		}
 		return getallen;
 	}
@@ -260,7 +260,7 @@ public class Period {
 		return finalCollection;
 	}
 
-	public double getMaxInsideTemp(){
+	public  double getMaxInsideTemp(){
 		return max(getInsideTemperatures());
 	}
 
@@ -272,9 +272,9 @@ public class Period {
 		return gemiddelde(getInsideTemperatures());
 	}
 
-//	public double getModusInsideTemp(){
-//		return modus(getInsideTemperatures());
-//	}
+	public double getModusInsideTemp(){
+		return modus(getInsideTemperatures());
+	}
 
 	public double getMedianInsideTemp(){
 		return median(getInsideTemperatures());
@@ -316,9 +316,9 @@ public class Period {
 		return median(getOutsideTemperatures());
 	}
 
-//	public double getModusOutsideTemp(){
-//		return modus(getOutsideTemperatures());
-//	}
+	public double getModusOutsideTemp(){
+		return modus(getOutsideTemperatures());
+	}
 
 	public double getStandaardafwijkingOutsideTemp(){
 		return standaardafwijking(getOutsideTemperatures());
@@ -349,9 +349,9 @@ public class Period {
 		return median(getAirpressure());
 	}
 
-//	public double getModusAirpressure(){
-//		return modus(getAirpressure());
-//	}
+	public double getModusAirpressure(){
+		return modus(getAirpressure());
+	}
 
 	public double getStandaardafwijkingAirpressure(){
 		return standaardafwijking(getAirpressure());
@@ -419,7 +419,7 @@ public class Period {
 
 	}
 
-	public static double gemiddelde(ArrayList<Double> numbers){
+	public double gemiddelde(ArrayList<Double> numbers){
 		double som = 0;
 		for (double x:numbers) {
 			som = som + x;

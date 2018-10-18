@@ -3,9 +3,12 @@ import java.util.ArrayList;
 
 public class Program {
     public static PageManager pageManager;
-
+    public static Period periode;
+    public static ArrayList<Measurement> measurements;
     //Main entry point of the program
     public static void main(String[] args) {
+        periode = new Period(11);
+        measurements = periode.getMeasurements();
         DisplayManager manager =  DisplayManager.Initialize("127.0.0.1");
         IO.init();
         pageManager =  new PageManager(loadPages());
@@ -54,7 +57,8 @@ public class Program {
   public static ArrayList<IPageBehaviour> loadPages() {
       ArrayList<IPageBehaviour> pages = new ArrayList<>();
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Page 1");
+          DisplayManager.getInstance().writeText("Page 1 :" + (double)Math.round(periode.getMaxInsideTemp() * 10)/10);
+          DisplayManager.getInstance().writeText("Page 1 :" + (double)Math.round(periode.getMaxInsideTemp() * 10)/10);
           IO.delay(10);
       });
 
