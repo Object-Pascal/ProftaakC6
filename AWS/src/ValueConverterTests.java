@@ -85,13 +85,13 @@ public class ValueConverterTests {
         System.out.println("Time of sunset = " + returnedData + " | Has to be: " + answerA);
     }
 
-    public static void testWindDirection() {
-        short testValue = 277;
-        String answer = "277°";
-        String directionAnswer = ValueConverter.windDirection(testValue);
-
-        System.out.println("Direction Calculated: " + directionAnswer + " | Should be: " + answer );
-    }
+//    public static void testWindDirection() {
+//        short testValue = 277;
+//        String answer = "277°";
+//        String directionAnswer = ValueConverter.windDirection(testValue);
+//
+//        System.out.println("Direction Calculated: " + directionAnswer + " | Should be: " + answer );
+//    }
 
     public static void testUvIndex() {
         short testValue = 38;
