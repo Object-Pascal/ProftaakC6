@@ -70,7 +70,7 @@ public class Program {
       });
 
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Barometer (1/2)\n" + " GEM: " + Math.round(periode.getGemiddeldeAirpressure()) + "\nMAX: " + Math.round(periode.getMaxAirpressure()));
+          DisplayManager.getInstance().writeText("MIN: " + Math.round(periode.getMinAirpressure()) + "Barometer (1/2)\n" + " GEM: " + Math.round(periode.getGemiddeldeAirpressure()) + "\nMAX: " + Math.round(periode.getMaxAirpressure()));
 //          DisplayManager.getInstance().writeText("MIN: " + Math.round(periode.getMinAirpressure()));
 //          DisplayManager.getInstance().writeText();
 //          DisplayManager.getInstance().writeText();

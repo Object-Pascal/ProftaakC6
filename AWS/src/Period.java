@@ -452,8 +452,7 @@ public class Period {
 		average = gemiddelde(afstandgemiddelde);
 		return Math.sqrt(average);
 	}
-
-<<<<<<< HEAD
+	
 	public String windRichting() {
 		Measurement test = new Measurement();
 		double graden = (test.getWindDirection()%  360.0);
@@ -478,9 +477,6 @@ public class Period {
 		}
 	}
 
-	public double modus(ArrayList<Double> numbers){
-		return 0.0;
-=======
 	public Double modus(ArrayList<Double> a)
 	{
 		ArrayList<Double> uniqueValues = new ArrayList<>();
@@ -524,7 +520,6 @@ public class Period {
 		System.out.println(uniqueValues);
 		System.out.println(uniqueCount);
 		return ((int)(Math.round(modeList.get(0)*10))/10.0);
->>>>>>> 249d91321c1fe0da1aa87c1a6150548511a3d50d
 	}
 
 
