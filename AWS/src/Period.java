@@ -520,9 +520,9 @@ public class Period {
 		Measurement test = new Measurement();
 		double graden = (test.getWindDirection()%  360.0);
 		if (graden > 337.5 || graden < 22.5 && graden >0){
-			return "N" ;
+			return "N";
 		}else if (graden > 22.5 && graden < 67.5){
-			return "NO" ;
+			return "NO";
 		}else if (graden > 67.5 && graden < 112.5){
 			return "O";
 		}else if (graden > 112.5 && graden < 157.5){
@@ -532,9 +532,9 @@ public class Period {
 		}else if (graden > 202.5 && graden < 247.5){
 			return "ZW";
 		}else if (graden > 247.5 && graden < 292.5){
-			return "W" ;
+			return "W";
 		}else if (graden > 292.5 && graden < 337.5){
-			return "NW" ;
+			return "NW";
 		}else{
 			return "Er staat geen wind";
 		}
@@ -584,7 +584,6 @@ public class Period {
 		System.out.println(uniqueCount);
 		return ((int)(Math.round(modeList.get(0)*10))/10.0);
 	}
-
 
 	public int graaddagen() {
 		int graaddagen = 0;
