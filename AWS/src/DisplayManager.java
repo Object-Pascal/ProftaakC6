@@ -3,15 +3,36 @@ import java.util.ArrayList;
 public class DisplayManager {
     private String ip;
     private int[] addresses = {0x18,0x16,0x14,0x12,0x10,0x24,0x22,0x20,0x34,0x32,0x30};
+    private PixelFont pixelFont;
 
-    private DisplayManager(String ip) {
+    public DisplayManager(String ip) {
         this.ip = ip;
         IO.init(ip);
+        this.pixelFont = BdfParser.bdfToCharacters("C:\\Users\\stijn\\Downloads\\tom-thumb.bdf");
     }
     
     public void writeText(String text) {
         for (int i = 0; i < text.length(); i++) {
             IO.writeShort(0x40, text.charAt(i));
+        }
+    }
+
+    public void writeBdfText(int x, int y, String text) {
+        for (int i = 0; i < text.length(); i++) {
+            BdfCharacter character = pixelFont.findCharacter(text.charAt(i));
+            drawBdfCharacter(x, y, character);
+            x += pixelFont.blockWidth;
+        }
+    }
+
+    private void drawBdfCharacter(int posx, int posy, BdfCharacter character) {
+        int[][] drawData = character.getBitmapData();
+        for (int y = 0; y < drawData.length; y++) {
+            for (int x = 0; x < drawData[y].length; x++) {
+                boolean drawPixel = drawData[y][x] != 0;
+                if (drawPixel)
+                    setPixel(posx + x, posy + y);
+            }
         }
     }
 

@@ -18,7 +18,7 @@ public class Program {
             manager.setPixel(0, 1, DISPLAYMATRIX_OPCODES.MOVE_DISPLAY);
             IO.delay(100);
         }*/
-        ArrayList<IPageBehaviour> pages = new ArrayList<>();
+/*        ArrayList<IPageBehaviour> pages = new ArrayList<>();
         pages.add(() -> {
             DisplayManager.getInstance().writeText("Page 1");
             IO.delay(10);
@@ -51,6 +51,7 @@ public class Program {
                 wasActive = true;
             } else if (wasActive && IO.readShort(0x100) == 0)
                 wasActive = false;
-        }
+        }*/
+        DisplayManager.getInstance().writeBdfText(5, 5,"This is a: test!");
     }
 }
