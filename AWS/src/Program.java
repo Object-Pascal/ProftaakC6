@@ -7,7 +7,7 @@ public class Program {
     public static ArrayList<Measurement> measurements;
     //Main entry point of the program
     public static void main(String[] args) {
-        periode = new Period(11);
+        periode = new Period();
         measurements = periode.getMeasurements();
         DisplayManager manager =  DisplayManager.Initialize("127.0.0.1");
         IO.init();
@@ -59,7 +59,7 @@ public class Program {
       ArrayList<IPageBehaviour> pages = new ArrayList<>();
       pages.add(() -> {
 
-          DisplayManager.getInstance().writeText("Temperatuur(2/2)\nModus: ");
+
 
           DisplayManager.getInstance().writeText("Temperatuur (1/2)\n");
           DisplayManager.getInstance().writeText("MIN: " + (double)Math.round(periode.getMinInsideTemp() * 10)/10);
@@ -75,10 +75,10 @@ public class Program {
       });
 
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("MIN: " + Math.round(periode.getMinAirpressure()) + "Barometer (1/2)\n" + " GEM: " + Math.round(periode.getGemiddeldeAirpressure()) + "\nMAX: " + Math.round(periode.getMaxAirpressure()));
-//          DisplayManager.getInstance().writeText("MIN: " + Math.round(periode.getMinAirpressure()));
-//          DisplayManager.getInstance().writeText();
-//          DisplayManager.getInstance().writeText();
+          DisplayManager.getInstance().writeText("Temp buiten (1/2)\n");
+          DisplayManager.getInstance().writeText("MIN: " + (double)Math.round(periode.getMinOutsideTemp() * 10)/10);
+          DisplayManager.getInstance().writeText(" GEM: " + (double)Math.round(periode.getGemiddeldeOutsideTemp() * 10)/10);
+          DisplayManager.getInstance().writeText("\nMAX: " + (double)Math.round(periode.getMaxOutsideTemp() * 10)/10);
           IO.delay(10);
       });
       pages.add(() -> {
@@ -87,7 +87,10 @@ public class Program {
       });
 
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Page 5");
+          DisplayManager.getInstance().writeText("Vocht. binnen (1/2)\n");
+          DisplayManager.getInstance().writeText("MIN: " + (double)Math.round(periode.getMinInsideHumidity() * 10) / 10 + "%");
+          DisplayManager.getInstance().writeText(" GEM: " + (double)Math.round(periode.getGemiddeldeInsideHumidity() * 10) / 10 + "%");
+          DisplayManager.getInstance().writeText("\nMAX: " + (double)Math.round(periode.getMaxInsideHumidity() * 10) / 10 + "%");
           IO.delay(10);
       });
 
@@ -96,7 +99,10 @@ public class Program {
           IO.delay(10);
       });
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Page 7");
+          DisplayManager.getInstance().writeText("Vocht. buiten (1/2)\n");
+          DisplayManager.getInstance().writeText("MIN: " + (double)Math.round(periode.getMinOutsideHumidity() * 10) / 10 + "%");
+          DisplayManager.getInstance().writeText(" GEM: " + (double)Math.round(periode.getGemiddeldeOutsideTemp() * 10) / 10 + "%");
+          DisplayManager.getInstance().writeText("\nMAX: " + (double)Math.round(periode.getMaxOutsideTemp() * 10) / 10 + "%");
           IO.delay(10);
       });
 
@@ -106,7 +112,10 @@ public class Program {
       });
 
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Page 9");
+          DisplayManager.getInstance().writeText("Barometer (1/2)\n");
+          DisplayManager.getInstance().writeText("MIN: " + Math.round(periode.getMinAirpressure()));
+          DisplayManager.getInstance().writeText(" GEM: " + Math.round(periode.getGemiddeldeAirpressure()));
+          DisplayManager.getInstance().writeText("\nMAX: " + Math.round(periode.getMaxAirpressure()));
           IO.delay(10);
       });
       pages.add(() -> {
@@ -115,12 +124,68 @@ public class Program {
       });
 
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Page 11");
+          DisplayManager.getInstance().writeText("Regenval (1/2)\n");
+          DisplayManager.getInstance().writeText("MIN: " + (double)Math.round(periode.getMinRainrate() * 10) / 10 + "%");
+          DisplayManager.getInstance().writeText(" GEM: " + (double)Math.round(periode.getGemiddeldeRainrate() * 10) / 10 + "%");
+          DisplayManager.getInstance().writeText("\nMAX: " + (double)Math.round(periode.getMaxRainrate() * 10) / 10 + "%");
           IO.delay(10);
       });
 
       pages.add(() -> {
           DisplayManager.getInstance().writeText("Page 12");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Windsnelheid (1/2)\n");
+          DisplayManager.getInstance().writeText("MIN: " + Math.round(periode.getMinWindSpeed()));
+          DisplayManager.getInstance().writeText(" GEM: " + Math.round(periode.getGemiddeldeWindSpeed()));
+          DisplayManager.getInstance().writeText("\nMAX: " + Math.round(periode.getMaxWindspeed()));
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 14");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 15");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 16");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 17");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 18");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 19");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 20");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 21");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 22");
           IO.delay(10);
       });
       return pages;
