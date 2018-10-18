@@ -10,10 +10,10 @@ public class RawMeasurement implements Serializable
     private short insideTemp;
     private short insideHum;
     private short outsideTemp;
+    private short outsideHum;
     private short windSpeed;
     private short avgWindSpeed;
     private short windDir;
-    private short outsideHum;
     private short rainRate;
     private short UVLevel;
     private short solarRad;

@@ -11,7 +11,7 @@ import java.util.Collections;
  * @version 2.0
  */
 public class Period {
-	private LocalDate beginPeriod;
+	private  LocalDate beginPeriod;
 	private LocalDate endPeriod;
 
 
@@ -228,7 +228,7 @@ public class Period {
 		ArrayList<Measurement> measurements = getMeasurements();
 		ArrayList<Double> getallen = new ArrayList<Double>();
 		for (Measurement x : measurements){
-			getallen.add((double)x.getInsideTemperature());
+			getallen.add(x.getInsideTemperature());
 		}
 		return getallen;
 	}
@@ -259,7 +259,7 @@ public class Period {
 		return finalCollection;
 	}
 
-	public double getMaxInsideTemp(){
+	public  double getMaxInsideTemp(){
 		return max(getInsideTemperatures());
 	}
 
@@ -315,9 +315,9 @@ public class Period {
 		return median(getOutsideTemperatures());
 	}
 
-//	public double getModusOutsideTemp(){
-//		return modus(getOutsideTemperatures());
-//	}
+	public double getModusOutsideTemp(){
+		return modus(getOutsideTemperatures());
+	}
 
 	public double getStandaardafwijkingOutsideTemp(){
 		return standaardafwijking(getOutsideTemperatures());
@@ -418,7 +418,7 @@ public class Period {
 
 	}
 
-	public static double gemiddelde(ArrayList<Double> numbers){
+	public double gemiddelde(ArrayList<Double> numbers){
 		double som = 0;
 		for (double x:numbers) {
 			som = som + x;
@@ -450,6 +450,30 @@ public class Period {
 		}
 		average = gemiddelde(afstandgemiddelde);
 		return Math.sqrt(average);
+	}
+
+	public String windRichting() {
+		Measurement test = new Measurement();
+		double graden = (test.getWindDirection()%  360.0);
+		if (graden > 337.5 || graden < 22.5 && graden >0){
+			return "N" ;
+		}else if (graden > 22.5 && graden < 67.5){
+			return "NO" ;
+		}else if (graden > 67.5 && graden < 112.5){
+			return "O";
+		}else if (graden > 112.5 && graden < 157.5){
+			return "ZO";
+		}else if (graden > 157.5 && graden < 202.5){
+			return "Z";
+		}else if (graden > 202.5 && graden < 247.5){
+			return "ZW";
+		}else if (graden > 247.5 && graden < 292.5){
+			return "W" ;
+		}else if (graden > 292.5 && graden < 337.5){
+			return "NW" ;
+		}else{
+			return "Er staat geen wind";
+		}
 	}
 
 	public Double modus(ArrayList<Double> a)
@@ -529,6 +553,7 @@ public class Period {
 		for(int i = 0; i < rainrate.size(); i++)
 		{
 			double regenval = (rainrate.get(i));
+
 			double regenvalDouble = regenval;
 
 
