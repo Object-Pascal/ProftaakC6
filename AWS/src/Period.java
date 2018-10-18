@@ -158,8 +158,60 @@ public class Period {
 	/**
 	 * Todo
 	 */
-	public Period longestDraught() {
-		return new Period();
+	public Period longestDrought() {
+		ArrayList<RawMeasurement> rawmeasurements = getRawMeasurements();
+		ArrayList<ArrayList<Measurement>> dayReadings = getMeasurementsPerDay();
+		ArrayList<Period> droughts = new ArrayList<>();
+
+		/*LocalDate curr = beginPeriod;
+		while (true) {
+			ArrayList<RawMeasurement> currDayReadings = new ArrayList<>();
+			for (int j = 0; j < rawmeasurements.size(); j++) {
+				if (rawmeasurements.get(j).getDateStamp().toLocalDate().toString().equals(curr.toString())){
+					currDayReadings.add(rawmeasurements.get(j));
+				}
+			}
+			dayReadings.add(currDayReadings);
+			curr = curr.plusDays(1);
+
+			if (curr.toString().equals(endPeriod.plusDays(1).toString()))
+				break;
+		}*/
+
+		Period buff = new Period(dayReadings.get(0).get(0).getDateStamp().toLocalDate(),
+								 dayReadings.get(0).get(0).getDateStamp().toLocalDate().minusDays(1));
+		for (int i = 0; i < dayReadings.size(); i++) {
+			if (dayReadings.get(i).size() > 0) {
+				if (dayReadings.get(i).get(0).getRainRate() <= 0) {
+					boolean drought = true;
+
+					for (int j = 0; j < dayReadings.get(i).size(); j++) {
+						if (dayReadings.get(i).get(j).getRainRate() > 0) {
+							drought = false;
+							break;
+						}
+					}
+					if (drought) {
+						buff.setEnd(buff.getEndPeriod().plusDays(1));
+					} else {
+						droughts.add(buff);
+						buff = new Period(dayReadings.get(i).get(0).getDateStamp().toLocalDate(),
+										  dayReadings.get(i).get(0).getDateStamp().toLocalDate());
+					}
+				}
+			}
+		}
+
+		long max = -1;
+		Period longestDrought = null;
+		for (int i = 0; i < droughts.size(); i++) {
+			long preview = ChronoUnit.DAYS.between(droughts.get(i).getBeginPeriod(), droughts.get(i).getEndPeriod());
+			if (preview > max) {
+				max = preview;
+				longestDrought = droughts.get(i);
+			}
+		}
+		return longestDrought;
 	}
 
 	/**
@@ -455,6 +507,45 @@ public class Period {
 		}
 
 		return graaddagen;
+	}
+
+	public static int maxAaneengeslotenRegenval(){
+		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<Double> rainrate = new ArrayList<Double>();
+		int maxRegenval = 0;
+
+		for (Measurement x : measurements){
+			rainrate.add(x.getRainrate());
+		}
+
+		for(int i = 0; i < rainrate.size(); i++)
+		{
+			double regenval = (rainrate.get(i));
+			double regenvalDouble = regenval;
+
+			if(regenval > 10000) {
+				//Ireële waarde
+			}
+			else if(regenval == 0)
+			{
+				if(huidigHoogste > maxRegenval) {
+					maxRegenval = huidigHoogste;
+				}
+				else{}
+				huidigHoogste = 0;
+			}
+			else {
+				huidigHoogste += regenvalDouble;
+			}
+		}
+		if(huidigHoogste > maxRegenval){
+			maxRegenval = huidigHoogste;
+		}
+		else{}
+		maxRegenval = (maxRegenval / 60.0);
+		maxRegenval = maxRegenval * 25.4;
+
+		return Math.round(maxRegenval * 10) / 10.0;;
 	}
 
 	public int tempOverlap(Period period) {
