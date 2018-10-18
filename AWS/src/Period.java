@@ -20,7 +20,6 @@ public class Period {
 	 * default constructor, sets the period to today
 	 */
 
-
 	public Period() {
 		beginPeriod = LocalDate.now();
 		endPeriod = LocalDate.now();
@@ -272,9 +271,9 @@ public class Period {
 		return gemiddelde(getInsideTemperatures());
 	}
 
-//	public double getModusInsideTemp(){
-//		return modus(getInsideTemperatures());
-//	}
+	public double getModusInsideTemp(){
+		return modus(getInsideTemperatures());
+	}
 
 	public double getMedianInsideTemp(){
 		return median(getInsideTemperatures());
@@ -349,9 +348,9 @@ public class Period {
 		return median(getAirpressure());
 	}
 
-//	public double getModusAirpressure(){
-//		return modus(getAirpressure());
-//	}
+	public double getModusAirpressure(){
+		return modus(getAirpressure());
+	}
 
 	public double getStandaardafwijkingAirpressure(){
 		return standaardafwijking(getAirpressure());
