@@ -18,38 +18,6 @@ public class Period {
 	private LocalDate beginPeriod;
 	private LocalDate endPeriod;
 
-	public static void main(String[] args) {
-
-		DisplayManager manager = new DisplayManager("192.168.178.36");
-		IO.init();
-		while(IO.readShort(0x80) != 0) {
-			//hier komt de tijdmethode van Hanno!
-			if(IO.readShort(0x100) == 1){
-				//Hier komt de scroll methode!
-				manager.writeText("test");
-				IO.delay(500);
-			}
-			if(IO.readShort(0x90)==1){
-				//hier komt de tabblad methode!
-				manager.writeText("test2");
-				IO.delay(500);
-			}
-		//ALLES WAT INVLOED HEEFT OP HET GUI MOET HIER IN!!!
-		}
-		manager.clearScreen();
-
-	//	if ( IO.readShort(0x80) != 0 )
-		//{
-		//	IO.writeShort(0x42,5);
-	//	}
-
-
-
-	}
-
-	/**
-	 * default constructor, sets the period to today
-	 */
 	public Period() {
 		beginPeriod = LocalDate.now();
 		endPeriod = LocalDate.now();
@@ -158,8 +126,60 @@ public class Period {
 	/**
 	 * Todo
 	 */
-	public Period longestDraught() {
-		return new Period();
+	public Period longestDrought() {
+		ArrayList<RawMeasurement> rawmeasurements = getRawMeasurements();
+		ArrayList<ArrayList<Measurement>> dayReadings = getMeasurementsPerDay();
+		ArrayList<Period> droughts = new ArrayList<>();
+
+		/*LocalDate curr = beginPeriod;
+		while (true) {
+			ArrayList<RawMeasurement> currDayReadings = new ArrayList<>();
+			for (int j = 0; j < rawmeasurements.size(); j++) {
+				if (rawmeasurements.get(j).getDateStamp().toLocalDate().toString().equals(curr.toString())){
+					currDayReadings.add(rawmeasurements.get(j));
+				}
+			}
+			dayReadings.add(currDayReadings);
+			curr = curr.plusDays(1);
+
+			if (curr.toString().equals(endPeriod.plusDays(1).toString()))
+				break;
+		}*/
+
+		Period buff = new Period(dayReadings.get(0).get(0).getDateStamp().toLocalDate(),
+								 dayReadings.get(0).get(0).getDateStamp().toLocalDate().minusDays(1));
+		for (int i = 0; i < dayReadings.size(); i++) {
+			if (dayReadings.get(i).size() > 0) {
+				if (dayReadings.get(i).get(0).getRainRate() <= 0) {
+					boolean drought = true;
+
+					for (int j = 0; j < dayReadings.get(i).size(); j++) {
+						if (dayReadings.get(i).get(j).getRainRate() > 0) {
+							drought = false;
+							break;
+						}
+					}
+					if (drought) {
+						buff.setEnd(buff.getEndPeriod().plusDays(1));
+					} else {
+						droughts.add(buff);
+						buff = new Period(dayReadings.get(i).get(0).getDateStamp().toLocalDate(),
+										  dayReadings.get(i).get(0).getDateStamp().toLocalDate());
+					}
+				}
+			}
+		}
+
+		long max = -1;
+		Period longestDrought = null;
+		for (int i = 0; i < droughts.size(); i++) {
+			long preview = ChronoUnit.DAYS.between(droughts.get(i).getBeginPeriod(), droughts.get(i).getEndPeriod());
+			if (preview > max) {
+				max = preview;
+				longestDrought = droughts.get(i);
+			}
+		}
+		return longestDrought;
 	}
 
 	/**
@@ -440,21 +460,57 @@ public class Period {
 		ArrayList<ArrayList<Measurement>> lijst = getMeasurementsPerDay();
 		ArrayList<Double> buiten = new ArrayList<>();
 		for (ArrayList<Measurement> measurement : lijst) {
+			buiten.clear();
 			for (Measurement measure : measurement) {
 				buiten.add(measure.getOutsideTemperature());
 			}
-			double gemiddeldBuiten = gemiddelde(buiten);
-			int counter = 0;
-			double totaal = 0;
-			if (gemiddeldBuiten < 18) {
-				totaal += gemiddeldBuiten;
-				counter++;
+			double gemiddelde = gemiddelde(buiten);
+
+			if (gemiddelde < 18) {
+				graaddagen += (18 - gemiddelde);
 			}
-			graaddagen += (int)(18*counter - totaal);
-			System.out.println(gemiddeldBuiten);
+		}
+		return graaddagen;
+	}
+
+	public double maxAaneengeslotenRegenval(){
+		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<Double> rainrate = new ArrayList<Double>();
+		double maxRegenval = 0;
+		double huidigHoogste = 0.0;
+
+		for (Measurement x : measurements){
+			rainrate.add(x.getRainRate());
 		}
 
-		return graaddagen;
+		for(int i = 0; i < rainrate.size(); i++)
+		{
+			double regenval = (rainrate.get(i));
+			double regenvalDouble = regenval;
+
+
+			if(regenval > 10000) {
+				//Ireële waarde
+			}
+			else if(regenval == 0)
+			{
+				if(huidigHoogste > maxRegenval) {
+					maxRegenval = huidigHoogste;
+				}
+				else{}
+				huidigHoogste = 0;
+			}
+			else {
+				huidigHoogste += regenvalDouble;
+			}
+		}
+		if(huidigHoogste > maxRegenval){
+			maxRegenval = huidigHoogste;
+		}
+		else{}
+
+		int temp = (int)(maxRegenval * 10);
+		return temp / 10;
 	}
 
 	public int tempOverlap(Period period) {
