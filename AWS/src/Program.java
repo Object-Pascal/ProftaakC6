@@ -59,7 +59,7 @@ public class Program {
       ArrayList<IPageBehaviour> pages = new ArrayList<>();
       pages.add(() -> {
 
-          DisplayManager.getInstance().writeText("Temperatuur(2/2)\nModus: "+);
+          DisplayManager.getInstance().writeText("Temperatuur(2/2)\nModus: ");
 
           DisplayManager.getInstance().writeText("Temperatuur (1/2)\n");
           DisplayManager.getInstance().writeText("MIN: " + (double)Math.round(periode.getMinInsideTemp() * 10)/10);
