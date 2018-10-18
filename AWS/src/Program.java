@@ -7,7 +7,7 @@ public class Program {
     public static ArrayList<Measurement> measurements;
     //Main entry point of the program
     public static void main(String[] args) {
-        periode = new Period(12);
+        periode = new Period(5);
         measurements = periode.getMeasurements();
         DisplayManager manager =  DisplayManager.Initialize("127.0.0.1");
         IO.init();
