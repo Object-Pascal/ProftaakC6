@@ -25,8 +25,8 @@ public class Program {
             }
             if (IO.readShort(0x90) == 1) {
                 pageManager.previousPage();
-                while(IO.readShort(0x90) == 1){
-
+                while(IO.readShort(0x90) == 1)
+                {
                 }
                 pageManager.printPageNumber();
             }
@@ -55,12 +55,15 @@ public class Program {
 
 
   public static ArrayList<IPageBehaviour> loadPages() {
+
       ArrayList<IPageBehaviour> pages = new ArrayList<>();
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Temp binnen (1/2)\n");
+
+          DisplayManager.getInstance().writeText("Temperatuur (1/2)\n");
           DisplayManager.getInstance().writeText("MIN: " + (double)Math.round(periode.getMinInsideTemp() * 10)/10);
           DisplayManager.getInstance().writeText(" GEM: " + (double)Math.round(periode.getGemiddeldeInsideTemp() * 10)/10);
           DisplayManager.getInstance().writeText("\nMAX: " + (double)Math.round(periode.getMaxInsideTemp() * 10)/10);
+
           IO.delay(10);
       });
 
@@ -185,21 +188,4 @@ public class Program {
       });
       return pages;
   }
-/*
-        pages.add(new EasterEggPage());
-
-        pageManager = new PageManager(pages);
-
-        boolean wasActive = false;
-        while(true) {
-            pageManager.showActivePage();
-
-            if (IO.readShort(0x100) != 0 && !wasActive) {
-                pageManager.nextPage();
-                IO.writeShort(0x100, 0);
-                wasActive = true;
-            } else if (wasActive && IO.readShort(0x100) == 0)
-                wasActive = false;
-        }*/
-
 }

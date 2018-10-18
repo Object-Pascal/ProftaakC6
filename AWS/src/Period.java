@@ -20,7 +20,6 @@ public class Period {
 	 * default constructor, sets the period to today
 	 */
 
-
 	public Period() {
 		beginPeriod = LocalDate.now();
 		endPeriod = LocalDate.now();
