@@ -17,7 +17,7 @@ public class Measurement implements Cloneable {
     private short insideHumidity, outsideHumidity;
     private double windSpeed, averageWindSpeed;
     private LocalTime sunrise, sunset;
-    private String windDirection;
+    private double windDirection;
     private double windChill;
     private double rainRate;
     private double uvIndex;
@@ -179,11 +179,11 @@ public class Measurement implements Cloneable {
         this.sunset = sunset;
     }
 
-    public String getWindDirection() {
+    public double getWindDirection() {
         return windDirection;
     }
 
-    public void setWindDirection(String windDirection) {
+    public void setWindDirection(double windDirection) {
         this.windDirection = windDirection;
     }
 
@@ -262,7 +262,7 @@ public class Measurement implements Cloneable {
         if (windSpeed > 254 || windSpeed < 0){
             return false;
         }
-        if (windDirection.equals("32767")){
+        if (windDirection==(32767)){
             return false;
         }
         if (rainRate == 32767){

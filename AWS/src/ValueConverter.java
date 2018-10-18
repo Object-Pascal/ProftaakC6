@@ -19,8 +19,8 @@ public class ValueConverter {
         return rawValue / (double)10;
     }
 
-    public static String windDirection(short rawValue) {
-        return "" + rawValue +"°";
+    public static double windDirection(short rawValue) {
+        return rawValue;
     }
 
     public static double inchesHgToHectoPascal(short rawValue) {
