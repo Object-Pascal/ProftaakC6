@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="AWS" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="ValueConverterTests" />
+    <option name="MAIN_CLASS_NAME" value="Program" />
     <module name="AWS" />
     <method v="2">
       <option name="Make" enabled="true" />

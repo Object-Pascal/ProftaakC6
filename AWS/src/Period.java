@@ -291,9 +291,6 @@ public class Period {
 		}
 
 		for (Measurement x : measurements){
-
-			getallen.add((double)x.getOutsideTemperature());
-
 			getallen.add(x.getOutsideTemperature());
 
 		}
@@ -516,8 +513,6 @@ public class Period {
 				modeList.add(mode);
 			}
 		}
-		System.out.println(uniqueValues);
-		System.out.println(uniqueCount);
 		return ((int)(Math.round(modeList.get(0)*10))/10.0);
 	}
 
