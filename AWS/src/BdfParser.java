@@ -15,7 +15,8 @@ public class BdfParser {
                     currentData = new ArrayList<>();
                 }
 
-                currentData.add(line);
+                if (newCharacterData)
+                    currentData.add(line);
 
                 if (line.contains("ENDCHAR"))
                     allData.add(currentData);

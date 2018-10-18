@@ -52,6 +52,6 @@ public class Program {
             } else if (wasActive && IO.readShort(0x100) == 0)
                 wasActive = false;
         }*/
-        DisplayManager.getInstance().writeBdfText(5, 5,"This is a: test!");
+        DisplayManager.getInstance().writeBdfText(5, 5,"This is a test");
     }
 }
