@@ -57,8 +57,10 @@ public class Program {
   public static ArrayList<IPageBehaviour> loadPages() {
       ArrayList<IPageBehaviour> pages = new ArrayList<>();
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Page 1 :" + (double)Math.round(periode.getMaxInsideTemp() * 10)/10);
-          DisplayManager.getInstance().writeText("Page 1 :" + (double)Math.round(periode.getMaxInsideTemp() * 10)/10);
+          DisplayManager.getInstance().writeText("Temperatuur (1/2)\n");
+          DisplayManager.getInstance().writeText("MIN: " + (double)Math.round(periode.getMinInsideTemp() * 10)/10);
+          DisplayManager.getInstance().writeText(" GEM: " + (double)Math.round(periode.getGemiddeldeInsideTemp() * 10)/10);
+          DisplayManager.getInstance().writeText("\nMAX: " + (double)Math.round(periode.getMaxInsideTemp() * 10)/10);
           IO.delay(10);
       });
 
@@ -68,7 +70,10 @@ public class Program {
       });
 
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Page 3");
+          DisplayManager.getInstance().writeText("Barometer (1/2)\n" + " GEM: " + Math.round(periode.getGemiddeldeAirpressure()) + "\nMAX: " + Math.round(periode.getMaxAirpressure()));
+//          DisplayManager.getInstance().writeText("MIN: " + Math.round(periode.getMinAirpressure()));
+//          DisplayManager.getInstance().writeText();
+//          DisplayManager.getInstance().writeText();
           IO.delay(10);
       });
       pages.add(() -> {
