@@ -21,7 +21,6 @@ public class Period {
 	 * default constructor, sets the period to today
 	 */
 
-
 	public Period() {
 		beginPeriod = LocalDate.now();
 		endPeriod = LocalDate.now();
@@ -367,16 +366,79 @@ public class Period {
 		return getallen;
 	}
 
+	public ArrayList<Double> getInsideHumidity(){
+		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<Double> getallen = new ArrayList<Double>();
+		for (Measurement x : measurements){
+			getallen.add((double)x.getInsideHumidity());
+		}
+		return getallen;
+	}
+
+	public ArrayList<Double> getRainrate(){
+		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<Double> getallen = new ArrayList<Double>();
+		for (Measurement x : measurements){
+			getallen.add((double)x.getRainRate());
+		}
+		return getallen;
+	}
+
+	public ArrayList<Double> getWindSpeed(){
+		ArrayList<Measurement> measurements = getMeasurements();
+		ArrayList<Double> getallen = new ArrayList<Double>();
+		for (Measurement x : measurements){
+			getallen.add((double)x.getWindSpeed());
+		}
+		return getallen;
+	}
+
+	public double getMaxWindspeed(){
+		return max(getWindSpeed());
+	}
+
+	public double getMinWindSpeed(){
+		return min(getWindSpeed());
+	}
+
+	public double getGemiddeldeWindSpeed(){
+		return gemiddelde(getWindSpeed());
+	}
+
 	public double getMaxOutsideHumidity(){
 		return max(getOutsideHumidity());
 	}
 
-	public double getMinOutsideHumiditye(){
-		return  min(getOutsideHumidity());
+	public double getMinOutsideHumidity(){
+		return min(getOutsideHumidity());
 	}
 
 	public double getGemiddeldeOutsideHumidity(){
 		return gemiddelde(getOutsideHumidity());
+	}
+
+	public double getMaxInsideHumidity(){
+		return max(getInsideHumidity());
+	}
+
+	public double getMinInsideHumidity(){
+		return min(getInsideHumidity());
+	}
+
+	public double getGemiddeldeInsideHumidity(){
+		return gemiddelde(getInsideHumidity());
+	}
+
+	public double getMaxRainrate(){
+		return max(getRainrate());
+	}
+
+	public double getMinRainrate(){
+		return min(getRainrate());
+	}
+
+	public double getGemiddeldeRainrate(){
+		return gemiddelde(getRainrate());
 	}
 
 	public double getMedianOutsideHumidity(){
