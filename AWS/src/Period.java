@@ -20,7 +20,7 @@ public class Period {
 
 	public static void main(String[] args) {
 
-		DisplayManager manager = new DisplayManager("192.168.178.36");
+		DisplayManager manager = new DisplayManager("127.0.0.1");
 		IO.init();
 		while(IO.readShort(0x80) != 0) {
 			//hier komt de tijdmethode van Hanno!
