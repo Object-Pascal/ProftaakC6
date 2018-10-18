@@ -226,10 +226,10 @@ public class Period {
 	}
 
 	public ArrayList<Double> getInsideTemperatures(){
-		ArrayList<RawMeasurement> measurements = getRawMeasurements();
+		ArrayList<Measurement> measurements = getMeasurements();
 		ArrayList<Double> getallen = new ArrayList<Double>();
-		for (RawMeasurement x : measurements){
-			getallen.add((double)x.getInsideTemp());
+		for (Measurement x : measurements){
+			getallen.add((double)x.getInsideTemperature());
 		}
 		return getallen;
 	}
@@ -272,9 +272,9 @@ public class Period {
 		return gemiddelde(getInsideTemperatures());
 	}
 
-	public double getModusInsideTemp(){
-		return modus(getInsideTemperatures());
-	}
+//	public double getModusInsideTemp(){
+//		return modus(getInsideTemperatures());
+//	}
 
 	public double getMedianInsideTemp(){
 		return median(getInsideTemperatures());
@@ -316,9 +316,9 @@ public class Period {
 		return median(getOutsideTemperatures());
 	}
 
-	public double getModusOutsideTemp(){
-		return modus(getOutsideTemperatures());
-	}
+//	public double getModusOutsideTemp(){
+//		return modus(getOutsideTemperatures());
+//	}
 
 	public double getStandaardafwijkingOutsideTemp(){
 		return standaardafwijking(getOutsideTemperatures());
@@ -349,9 +349,9 @@ public class Period {
 		return median(getAirpressure());
 	}
 
-	public double getModusAirpressure(){
-		return modus(getAirpressure());
-	}
+//	public double getModusAirpressure(){
+//		return modus(getAirpressure());
+//	}
 
 	public double getStandaardafwijkingAirpressure(){
 		return standaardafwijking(getAirpressure());
@@ -453,8 +453,49 @@ public class Period {
 		return Math.sqrt(average);
 	}
 
-	public double modus(ArrayList<Double> numbers){
-		return 0.0;
+	public Double modus(ArrayList<Double> a)
+	{
+		ArrayList<Double> uniqueValues = new ArrayList<>();
+		ArrayList<Integer> uniqueCount = new ArrayList<>();
+		ArrayList<Double> modeList = new ArrayList<>();
+		int maxCount = 0;
+		for (int i = 0; i < a.size(); i++)
+		{
+			if (!(uniqueValues.contains(a.get(i))))
+			{
+				uniqueValues.add(a.get(i));
+			}
+		}
+
+		for (int j = 0; j < uniqueValues.size() ; j++)
+		{
+			int count = 0;
+			for (int k = 0; k < a.size(); k++)
+			{
+				//double uniqueValue = uniqueValues.get(j);
+				//double comparisonValue = a.get(k);
+				if (uniqueValues.get(j).equals(a.get(k)))
+				{
+					count++;
+					if(count > maxCount)
+					{
+						maxCount = count;
+					}
+				}
+			}
+			uniqueCount.add(count);
+		}
+		for (int h = 0; h < uniqueValues.size(); h++)
+		{
+			if(uniqueCount.get(h) == maxCount)
+			{
+				double mode = uniqueValues.get(h);
+				modeList.add(mode);
+			}
+		}
+		System.out.println(uniqueValues);
+		System.out.println(uniqueCount);
+		return ((int)(Math.round(modeList.get(0)*10))/10.0);
 	}
 
 

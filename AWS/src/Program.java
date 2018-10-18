@@ -9,21 +9,25 @@ public class Program {
         DisplayManager manager =  DisplayManager.Initialize("127.0.0.1");
         IO.init();
         pageManager =  new PageManager(loadPages());
+        pageManager.printPageNumber();
+        pageManager.showActivePage();
         while (IO.readShort(0x80) != 0) {
             klok();
-            pageManager.showActivePage();
             if (IO.readShort(0x100) == 1) {
                 pageManager.nextPage();
                 while(IO.readShort(0x100) == 1){
 
                 }
+                pageManager.printPageNumber();
             }
             if (IO.readShort(0x90) == 1) {
                 pageManager.previousPage();
                 while(IO.readShort(0x90) == 1){
 
                 }
+                pageManager.printPageNumber();
             }
+            pageManager.showActivePage();
             IO.delay(50);
         }
         manager.clearAll();
@@ -61,6 +65,48 @@ public class Program {
 
       pages.add(() -> {
           DisplayManager.getInstance().writeText("Page 3");
+          IO.delay(10);
+      });
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 4");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 5");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 6");
+          IO.delay(10);
+      });
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 7");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 8");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 9");
+          IO.delay(10);
+      });
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 10");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 11");
+          IO.delay(10);
+      });
+
+      pages.add(() -> {
+          DisplayManager.getInstance().writeText("Page 12");
           IO.delay(10);
       });
       return pages;
