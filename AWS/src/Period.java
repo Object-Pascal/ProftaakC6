@@ -452,7 +452,7 @@ public class Period {
 		average = gemiddelde(afstandgemiddelde);
 		return Math.sqrt(average);
 	}
-	
+
 	public String windRichting() {
 		Measurement test = new Measurement();
 		double graden = (test.getWindDirection()%  360.0);
