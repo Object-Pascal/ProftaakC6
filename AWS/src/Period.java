@@ -417,20 +417,16 @@ public class Period {
 		ArrayList<ArrayList<Measurement>> lijst = getMeasurementsPerDay();
 		ArrayList<Double> buiten = new ArrayList<>();
 		for (ArrayList<Measurement> measurement : lijst) {
+			buiten.clear();
 			for (Measurement measure : measurement) {
 				buiten.add(measure.getOutsideTemperature());
 			}
-			double gemiddeldBuiten = gemiddelde(buiten);
-			int counter = 0;
-			double totaal = 0;
-			if (gemiddeldBuiten < 18) {
-				totaal += gemiddeldBuiten;
-				counter++;
-			}
-			graaddagen += (int)(18*counter - totaal);
-			System.out.println(gemiddeldBuiten);
-		}
+			double gemiddelde = gemiddelde(buiten);
 
+			if (gemiddelde < 18) {
+				graaddagen += (18 - gemiddelde);
+			}
+		}
 		return graaddagen;
 	}
 
