@@ -14,19 +14,36 @@ public class Program {
         pageManager =  new PageManager(loadPages());
         pageManager.printPageNumber();
         pageManager.showActivePage();
+        //main loop
         while (IO.readShort(0x80) != 0) {
             klok();
+            //checkt voor input voor nextpage
             if (IO.readShort(0x100) == 1) {
                 pageManager.nextPage();
                 while(IO.readShort(0x100) == 1){
-
+                    //speciale skip functie (skipt 5 tabs)
+                    if(IO.readShort(0x90)==1){
+                        for (int i = 0; i < 4 ; i++) {
+                            IO.delay(200);
+                            pageManager.nextPage();
+                        }
+                        break;
+                    }
                 }
                 pageManager.printPageNumber();
             }
             if (IO.readShort(0x90) == 1) {
+                //checkt voor input voor previouspage
                 pageManager.previousPage();
-                while(IO.readShort(0x90) == 1)
-                {
+                while(IO.readShort(0x90) == 1) {
+                    //speciale skip functie
+                    if(IO.readShort(0x100)==1){
+                        for (int i = 0; i < 4; i++) {
+                            IO.delay(200);
+                            pageManager.previousPage();
+                        }
+                        break;
+                    }
                 }
                 pageManager.printPageNumber();
             }
