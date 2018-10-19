@@ -174,7 +174,7 @@ public class Period {
 		}
 
 		long max = -1;
-		Period longestDrought = null;
+		Period longestDrought = new Period(0);
 		for (int i = 0; i < droughts.size(); i++) {
 			long preview = ChronoUnit.DAYS.between(droughts.get(i).getBeginPeriod(), droughts.get(i).getEndPeriod());
 			if (preview > max) {
@@ -222,7 +222,10 @@ public class Period {
 				longestPeriod = connectedMeasurementsDates.get(i);
 		}
 
-		return new Period(longestPeriod.get(0).toLocalDate(), longestPeriod.get(longestPeriod.size() - 1).toLocalDate());
+		if (longestPeriod.size() > 0)
+			return new Period(longestPeriod.get(0).toLocalDate(), longestPeriod.get(longestPeriod.size() - 1).toLocalDate());
+		else
+			return new Period(0);
 	}
 
 	public ArrayList<Double> getInsideTemperatures(){
