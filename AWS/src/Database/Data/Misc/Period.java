@@ -15,7 +15,8 @@ public class Period {
 	private  LocalDate beginPeriod;
 	private LocalDate endPeriod;
 
-
+	private ArrayList<RawMeasurement> rawMeasurements;
+	private ArrayList<Measurement> measurements;
 
 	/**
 	 * default constructor, sets the period to today
@@ -86,7 +87,10 @@ public class Period {
 	 * @return a list of raw measurements
 	 */
 	public ArrayList<RawMeasurement> getRawMeasurements() {
-		return DatabaseConnection.getMeasurementsBetween(LocalDateTime.of(beginPeriod, LocalTime.of(0, 1)), LocalDateTime.of(endPeriod, LocalTime.of(23, 59)));
+		if (rawMeasurements == null)
+			rawMeasurements = DatabaseConnection.getMeasurementsBetween(LocalDateTime.of(beginPeriod, LocalTime.of(0, 1)), LocalDateTime.of(endPeriod, LocalTime.of(23, 59)));
+
+		return rawMeasurements;
 	}
 
 	/**
@@ -94,15 +98,20 @@ public class Period {
 	 * @return a filtered list of measurements
 	 */
 	public ArrayList<Measurement> getMeasurements() {
-		ArrayList<Measurement> measurements = new ArrayList<>();
-		ArrayList<RawMeasurement> rawMeasurements = getRawMeasurements();
-		for (RawMeasurement rawMeasurement : rawMeasurements) {
-			Measurement measurement = new Measurement(rawMeasurement);
-			if(measurement.isValid()) {
-				measurements.add(measurement);
+		if (this.measurements == null)
+		{
+			ArrayList<Measurement> measurements = new ArrayList<>();
+			ArrayList<RawMeasurement> rawMeasurements = getRawMeasurements();
+			for (RawMeasurement rawMeasurement : rawMeasurements) {
+				Measurement measurement = new Measurement(rawMeasurement);
+				if(measurement.isValid()) {
+					measurements.add(measurement);
+				}
 			}
+			this.measurements = measurements;
 		}
-		return measurements;
+
+		return this.measurements;
 	}
 
 
