@@ -110,7 +110,11 @@ public class Program {
         } else {
         }
     }
-
+public static void clearRechts(){
+        IO.writeShort(0x30,0x100);
+        IO.writeShort(0x32,0x100);
+        IO.writeShort(0x34,0x100);
+}
 
 
     private static void klok() {
@@ -211,7 +215,7 @@ public class Program {
           DisplayManager.getInstance().writeText("MIN: " + Math.round(periode.getMinAirpressure()));
           DisplayManager.getInstance().writeText(" GEM: " + Math.round(periode.getGemiddeldeAirpressure()));
           DisplayManager.getInstance().writeText("\nMAX: " + Math.round(periode.getMaxAirpressure()));
-          actueel(measurement.getAirpressure());
+          clearRechts();
           IO.delay(10);
       });
       pages.add(() -> {
@@ -219,7 +223,7 @@ public class Program {
           DisplayManager.getInstance().writeText("MOD: " + (double)Math.round(periode.getModusAirpressure()*10)/10+" Stdafw:");
           DisplayManager.getInstance().writeText("\nMED: " + (double)Math.round(periode.getMedianAirpressure()*10)/10);
           DisplayManager.getInstance().writeText("    " + (double)Math.round(periode.getStandaardafwijkingAirpressure()*10)/10);
-          actueel(measurement.getAirpressure());
+          clearRechts();
           IO.delay(10);
       });
 
@@ -263,7 +267,7 @@ public class Program {
           DisplayManager.getInstance().writeText("Windrichting: " + periode.windRichting());
           DisplayManager.getInstance().writeText("\nUVLevel: " + periode.getUVLevel());
           DisplayManager.getInstance().writeText("\nSolarRad: " + periode.getSolarRad());
-
+            clearRechts();
           IO.delay(10);
       });
 
@@ -272,7 +276,7 @@ public class Program {
           LocalTime sunset = measurement.getSunset();
           DisplayManager.getInstance().writeText(String.format("  Sunrise: %s\n", sunrise.toString()));//sunrise.getHour() < 10 ? "0" + sunrise.getHour() : sunrise.getHour(), sunrise.getMinute() < 10 ? "0" + sunrise.getMinute() : sunrise.getMinute()));
           DisplayManager.getInstance().writeText(String.format("  Sunset : %s", sunset.toString()));
-
+          clearRechts();
           IO.delay(10);
       });
 
@@ -280,14 +284,14 @@ public class Program {
           DisplayManager.getInstance().writeText("Graaddagen: " + periode.graaddagen());
           DisplayManager.getInstance().writeText("\nLangste droogte: " + periode.longestDrought().numberOfDays());
           DisplayManager.getInstance().writeText("\nTemp overlap: " + periode.tempOverlap());
-
+clearRechts();
           IO.delay(10);
       });
 
       pages.add(() -> {
           DisplayManager.getInstance().writeText("Max regen: " + (int)periode.maxAaneengeslotenRegenval());
           DisplayManager.getInstance().writeText(" mm \nLangst zomer: " + periode.getLongestConnectedSummerDays().numberOfDays() + " dagen");
-
+          clearRechts();
           IO.delay(10);
       });
 
