@@ -131,12 +131,10 @@ public class Program {
 
 
   public static ArrayList<IPageBehaviour> loadPages() {
-
       ArrayList<IPageBehaviour> pages = new ArrayList<>();
+      Measurement measurement = new Measurement(DatabaseConnection.getMostRecentMeasurement());
+
       pages.add(() -> {
-
-
-
           DisplayManager.getInstance().writeText("Temperatuur (1/2)\n");
           DisplayManager.getInstance().writeText("MIN: " + (double)Math.round(periode.getMinInsideTemp() * 10)/10);
           DisplayManager.getInstance().writeText(" GEM: " + (double)Math.round(periode.getGemiddeldeInsideTemp() * 10)/10);
@@ -270,7 +268,6 @@ public class Program {
       });
 
       pages.add(() -> {
-          Measurement measurement = new Measurement(DatabaseConnection.getMostRecentMeasurement());
           LocalTime sunrise = measurement.getSunrise();
           LocalTime sunset = measurement.getSunset();
           DisplayManager.getInstance().writeText(String.format("  Sunrise: %s\n", sunrise.toString()));//sunrise.getHour() < 10 ? "0" + sunrise.getHour() : sunrise.getHour(), sunrise.getMinute() < 10 ? "0" + sunrise.getMinute() : sunrise.getMinute()));

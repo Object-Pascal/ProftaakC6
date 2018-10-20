@@ -1,7 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4fd4e36a-708b-4627-a2cb-473369daeca1" name="Default Changelist" comment="" />
+    <list default="true" id="4fd4e36a-708b-4627-a2cb-473369daeca1" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/Connection/DatabaseConnection.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/Connection/IO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/Data/Conversion/ValueConverter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/Data/Conversion/ValueConverterTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/Data/Measurement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/Data/Misc/Period.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/Data/RawMeasurement.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/Buttons.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/Content/Fonts/BdfCharacter.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/Content/Fonts/BdfParser.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/Content/Fonts/PixelFont.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/DISPLAYMATRIX_OPCODES.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/DisplayManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/DotMatrix/Pages/Page.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/DotMatrix/Pages/PageManager.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Display/Segment/SegmentDisplay.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Program.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Program.java" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -47,29 +66,32 @@
       <usages-collector id="statistics.lifecycle.project">
         <counts>
           <entry key="project.closed" value="1" />
+          <entry key="project.open.time.32" value="1" />
+          <entry key="project.opened" value="1" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="java" value="431" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="JAVA" value="431" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Program.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="214" selection-start-line="214" selection-end-line="214" />
+            <state relative-caret-position="215">
+              <caret line="136" column="23" lean-forward="true" selection-start-line="136" selection-start-column="23" selection-end-line="136" selection-end-column="23" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/Database/Data/Misc/Period.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="209" column="39" selection-start-line="209" selection-start-column="39" selection-end-line="209" selection-end-column="39" />
             </state>
           </provider>
         </entry>
@@ -90,6 +112,7 @@
       <find>tempoverlap</find>
       <find>tempover</find>
       <find>writeshort</find>
+      <find>chrono</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -103,10 +126,12 @@
         <option value="$PROJECT_DIR$/src/Buttons.java" />
         <option value="$PROJECT_DIR$/src/DisplayManager.java" />
         <option value="$PROJECT_DIR$/src/Period.java" />
+        <option value="$PROJECT_DIR$/src/Database/Data/Misc/Period.java" />
+        <option value="$PROJECT_DIR$/src/Program.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="950" />
     <option name="width" value="980" />
     <option name="height" value="1040" />
@@ -116,6 +141,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -128,40 +154,12 @@
               <item name="AWS" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="AWS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AWS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Database" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AWS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AWS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Database" type="462c0819:PsiDirectoryNode" />
-              <item name="Data" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AWS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AWS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Database" type="462c0819:PsiDirectoryNode" />
-              <item name="Data" type="462c0819:PsiDirectoryNode" />
-              <item name="Misc" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="AWS" type="b2602c69:ProjectViewProjectNode" />
-              <item name="AWS" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="Display" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -221,10 +219,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="950" y="0" width="980" height="1040" extended-state="0" />
+    <frame x="-8" y="-8" width="1936" height="1066" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.5276243" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29850745" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -233,21 +231,21 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.33476394" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.49946696" visible="true" weight="0.33442265" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50053304" side_tool="true" visible="true" weight="0.33442265" />
       <window_info anchor="bottom" id="TMC Test Results" order="10" />
-      <window_info anchor="bottom" id="Messages" order="11" weight="0.32765958" />
+      <window_info anchor="bottom" id="Messages" order="11" sideWeight="0.4989339" weight="0.24074075" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Palette" order="3" />
-      <window_info active="true" anchor="right" id="TMC Project List" order="4" visible="true" weight="0.32734805" />
+      <window_info anchor="right" id="TMC Project List" order="4" weight="0.32717392" />
       <window_info anchor="right" id="Capture Analysis" order="5" />
       <window_info anchor="right" id="Theme Preview" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="7" />
@@ -295,16 +293,115 @@
     <entry file="file://$PROJECT_DIR$/src/Period.java" />
     <entry file="file://$PROJECT_DIR$/src/DisplayManager.java" />
     <entry file="file://$PROJECT_DIR$/src/Buttons.java" />
+    <entry file="file://$PROJECT_DIR$/src/IO.java" />
+    <entry file="file://$PROJECT_DIR$/src/Database/Data/Misc/Period.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3094">
+          <caret line="194" column="5" lean-forward="true" selection-start-line="194" selection-start-column="5" selection-end-line="194" selection-end-column="5" />
+          <folding>
+            <element signature="e#1656#1657#0" expanded="true" />
+            <element signature="e#1717#1718#0" expanded="true" />
+            <element signature="e#8232#8233#0" expanded="true" />
+            <element signature="e#8274#8275#0" expanded="true" />
+            <element signature="e#8310#8311#0" expanded="true" />
+            <element signature="e#8355#8356#0" expanded="true" />
+            <element signature="e#8398#8399#0" expanded="true" />
+            <element signature="e#8447#8448#0" expanded="true" />
+            <element signature="e#8485#8486#0" expanded="true" />
+            <element signature="e#8529#8530#0" expanded="true" />
+            <element signature="e#8568#8569#0" expanded="true" />
+            <element signature="e#8613#8614#0" expanded="true" />
+            <element signature="e#8664#8665#0" expanded="true" />
+            <element signature="e#8721#8722#0" expanded="true" />
+            <element signature="e#9188#9189#0" expanded="true" />
+            <element signature="e#9231#9232#0" expanded="true" />
+            <element signature="e#9268#9269#0" expanded="true" />
+            <element signature="e#9314#9315#0" expanded="true" />
+            <element signature="e#9358#9359#0" expanded="true" />
+            <element signature="e#9408#9409#0" expanded="true" />
+            <element signature="e#9448#9449#0" expanded="true" />
+            <element signature="e#9494#9495#0" expanded="true" />
+            <element signature="e#9533#9534#0" expanded="true" />
+            <element signature="e#9578#9579#0" expanded="true" />
+            <element signature="e#9630#9631#0" expanded="true" />
+            <element signature="e#9688#9689#0" expanded="true" />
+            <element signature="e#9986#9987#0" expanded="true" />
+            <element signature="e#10021#10022#0" expanded="true" />
+            <element signature="e#10058#10059#0" expanded="true" />
+            <element signature="e#10094#10095#0" expanded="true" />
+            <element signature="e#10138#10139#0" expanded="true" />
+            <element signature="e#10180#10181#0" expanded="true" />
+            <element signature="e#10220#10221#0" expanded="true" />
+            <element signature="e#10258#10259#0" expanded="true" />
+            <element signature="e#10297#10298#0" expanded="true" />
+            <element signature="e#10334#10335#0" expanded="true" />
+            <element signature="e#10386#10387#0" expanded="true" />
+            <element signature="e#10436#10437#0" expanded="true" />
+            <element signature="e#11551#11552#0" expanded="true" />
+            <element signature="e#11584#11585#0" expanded="true" />
+            <element signature="e#11619#11620#0" expanded="true" />
+            <element signature="e#11652#11653#0" expanded="true" />
+            <element signature="e#11694#11695#0" expanded="true" />
+            <element signature="e#11734#11735#0" expanded="true" />
+            <element signature="e#11772#11773#0" expanded="true" />
+            <element signature="e#11808#11809#0" expanded="true" />
+            <element signature="e#11845#11846#0" expanded="true" />
+            <element signature="e#11880#11881#0" expanded="true" />
+            <element signature="e#11930#11931#0" expanded="true" />
+            <element signature="e#11978#11979#0" expanded="true" />
+            <element signature="e#12019#12020#0" expanded="true" />
+            <element signature="e#12058#12059#0" expanded="true" />
+            <element signature="e#12099#12100#0" expanded="true" />
+            <element signature="e#12138#12139#0" expanded="true" />
+            <element signature="e#12186#12187#0" expanded="true" />
+            <element signature="e#12232#12233#0" expanded="true" />
+            <element signature="e#12272#12273#0" expanded="true" />
+            <element signature="e#12310#12311#0" expanded="true" />
+            <element signature="e#12350#12351#0" expanded="true" />
+            <element signature="e#12388#12389#0" expanded="true" />
+            <element signature="e#12435#12436#0" expanded="true" />
+            <element signature="e#12480#12481#0" expanded="true" />
+            <element signature="e#12523#12524#0" expanded="true" />
+            <element signature="e#12564#12565#0" expanded="true" />
+            <element signature="e#12606#12607#0" expanded="true" />
+            <element signature="e#12646#12647#0" expanded="true" />
+            <element signature="e#12701#12702#0" expanded="true" />
+            <element signature="e#12754#12755#0" expanded="true" />
+            <element signature="e#12789#12790#0" expanded="true" />
+            <element signature="e#12821#12822#0" expanded="true" />
+            <element signature="e#12855#12856#0" expanded="true" />
+            <element signature="e#12887#12888#0" expanded="true" />
+            <element signature="e#12928#12929#0" expanded="true" />
+            <element signature="e#12967#12968#0" expanded="true" />
+            <element signature="e#13004#13005#0" expanded="true" />
+            <element signature="e#13039#13040#0" expanded="true" />
+            <element signature="e#13075#13076#0" expanded="true" />
+            <element signature="e#13109#13110#0" expanded="true" />
+            <element signature="e#13158#13159#0" expanded="true" />
+            <element signature="e#13205#13206#0" expanded="true" />
+            <element signature="e#13249#13250#0" expanded="true" />
+            <element signature="e#13291#13292#0" expanded="true" />
+            <element signature="e#13334#13335#0" expanded="true" />
+            <element signature="e#13375#13376#0" expanded="true" />
+            <element signature="e#13431#13432#0" expanded="true" />
+            <element signature="e#13485#13486#0" expanded="true" />
+            <element signature="e#14032#14033#0" expanded="true" />
+            <element signature="e#14057#14058#0" expanded="true" />
+            <element signature="e#14093#14094#0" expanded="true" />
+            <element signature="e#14116#14117#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/Program.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="214" selection-start-line="214" selection-end-line="214" />
+        <state relative-caret-position="215">
+          <caret line="136" column="23" lean-forward="true" selection-start-line="136" selection-start-column="23" selection-end-line="136" selection-end-column="23" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/IO.java" />
   </component>
 </project>
