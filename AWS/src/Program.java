@@ -7,7 +7,7 @@ public class Program {
     public static ArrayList<Measurement> measurements;
     //Main entry point of the program
     public static void main(String[] args) {
-        periode = new Period(5);
+        periode = new Period(120);
         measurements = periode.getMeasurements();
         DisplayManager manager =  DisplayManager.Initialize("127.0.0.1");
         IO.init();
@@ -196,9 +196,11 @@ public class Program {
       });
 
       pages.add(() -> {
-          //TODO: SUNRISE SUNSET STIJN
-          DisplayManager.getInstance().writeText("Sunrise: komt nog");
-          DisplayManager.getInstance().writeText("\nSunset: komt nog");
+          Measurement measurement = new Measurement(DatabaseConnection.getMostRecentMeasurement());
+          LocalTime sunrise = measurement.getSunrise();
+          LocalTime sunset = measurement.getSunset();
+          DisplayManager.getInstance().writeText(String.format("  Sunrise: %s\n", sunrise.toString()));//sunrise.getHour() < 10 ? "0" + sunrise.getHour() : sunrise.getHour(), sunrise.getMinute() < 10 ? "0" + sunrise.getMinute() : sunrise.getMinute()));
+          DisplayManager.getInstance().writeText(String.format("  Sunset : %s", sunset.toString()));
           IO.delay(10);
       });
 
@@ -211,7 +213,7 @@ public class Program {
 
       pages.add(() -> {
           DisplayManager.getInstance().writeText("Max regen.: " + (int)periode.maxAaneengeslotenRegenval());
-          DisplayManager.getInstance().writeText(" dagen \nLangst zomer: " + periode.getLongestConnectedSummerDays().numberOfDays() + " dagen");
+          DisplayManager.getInstance().writeText(" mm \nLangst zomer: " + periode.getLongestConnectedSummerDays().numberOfDays() + " dagen");
           IO.delay(10);
       });
 
