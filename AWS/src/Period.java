@@ -732,6 +732,28 @@ public class Period {
 		return counter;
 	}
 
+    public int mistdagen(){
+	    int counterdag = 0;
+	    int countertotaal = 0;
+	    int counter = 0;
+	    ArrayList<ArrayList<Measurement>> dagen = getMeasurementsPerDay();
+	    for (ArrayList<Measurement> x : dagen ){
+	        for (Measurement y : x){
+	            if (dauwPunt(y) -  y.getOutsideTemperature() >= -2.5 && dauwPunt(y) -  y.getOutsideTemperature() <= 2.5)
+	                counter++;
+	                countertotaal++;
+            }
+            if (counter != 0){counterdag++;}
+            counter = 0;
+        }
+	    return counterdag;
+    }
+
+	public double dauwPunt(Measurement m){
+	    double a = (Math.log(m.getOutsideHumidity()/100)) / Math.log(2.718282) + (17.62 * m.getOutsideTemperature() / (243.12 + m.getOutsideTemperature()));
+	    return 243.12 * a / (17.62 - a);
+    }
+
 
 }
 

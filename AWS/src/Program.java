@@ -291,6 +291,7 @@ clearRechts();
       pages.add(() -> {
           DisplayManager.getInstance().writeText("Max regen: " + (int)periode.maxAaneengeslotenRegenval());
           DisplayManager.getInstance().writeText(" mm \nLangst zomer: " + periode.getLongestConnectedSummerDays().numberOfDays() + " dagen");
+          DisplayManager.getInstance().writeText(" mm \nDagen mist: " + periode.mistdagen() + " dagen");
           clearRechts();
           IO.delay(10);
       });
