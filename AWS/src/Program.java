@@ -8,7 +8,6 @@ public class Program {
     //Main entry point of the program
     public static void main(String[] args) {
         periode = new Period(120);
-        Measurement measurement = new Measurement(DatabaseConnection.getMostRecentMeasurement());
         measurements = periode.getMeasurements();
         DisplayManager manager =  DisplayManager.Initialize("127.0.0.1");
         IO.init();
@@ -139,7 +138,7 @@ public static void clearRechts(){
       Measurement measurement = new Measurement(DatabaseConnection.getMostRecentMeasurement());
 
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Temperatuur (1/2)\n");
+          DisplayManager.getInstance().writeText("Temp binnen (1/2)\n");
           DisplayManager.getInstance().writeText("MIN: " + (double)Math.round(periode.getMinInsideTemp() * 10)/10);
           DisplayManager.getInstance().writeText(" GEM: " + (double)Math.round(periode.getGemiddeldeInsideTemp() * 10)/10);
           DisplayManager.getInstance().writeText("\nMAX: " + (double)Math.round(periode.getMaxInsideTemp() * 10)/10);
@@ -148,7 +147,7 @@ public static void clearRechts(){
       });
 
       pages.add(() -> {
-          DisplayManager.getInstance().writeText("Temperatuur (2/2)\n");
+          DisplayManager.getInstance().writeText("Temp binnen (2/2)\n");
           DisplayManager.getInstance().writeText("Mod: " + (double)Math.round(periode.getModusInsideTemp()*10)/10+" Stdafw:");
           DisplayManager.getInstance().writeText("\nMed: " + (double)Math.round(periode.getMedianInsideTemp()*10)/10);
           DisplayManager.getInstance().writeText("    " + (double)Math.round(periode.getStandaardafwijkingInsideTemp()*10)/10);
