@@ -218,7 +218,11 @@ public class Period {
 		for (int i = 0; i < isSummerDay.size(); i++) {
 			while(isSummerDay.get(i)) {
 				currentCollection.add(periodicMeasurements.get(i).get(0).getDateStamp());
-				i++;
+
+				if (i < isSummerDay.size() - 1)
+					i++;
+				else
+					break;
 			}
 
 			connectedMeasurementsDates.add(currentCollection);
